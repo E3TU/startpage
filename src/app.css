@@ -1,0 +1,16 @@
+:root {
+	--bg-color: #292929;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	/* display: flex;
+	justify-content: center; */
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    background-color: var(--bg-color);
+}
