@@ -4,6 +4,7 @@
 	let { children } = $props();
 
 	import '../app.css';
+	import '@fontsource-variable/gabarito/wght.css';
 </script>
 
 <svelte:head>

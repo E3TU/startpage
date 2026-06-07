@@ -1,10 +1,15 @@
 :root {
 	--bg-color: #292929;
+	--gray: #24242a;
+	--primary-text: #fff;
+	--secondary-text: #c2c2c2;
+	--purple: #661288;
 }
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Gabarito Variable', system-ui;
 }
 body {
 	/* display: flex;
@@ -12,5 +17,5 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-    background-color: var(--bg-color);
+	background-color: var(--bg-color);
 }
