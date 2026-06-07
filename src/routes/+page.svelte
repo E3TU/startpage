@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<div class="container">
+
+</div>
+
+<style>
+    .container{
+        width: 50rem;
+        height: 25rem;
+        background-color: aqua;
+        margin: 0 auto;
+        margin-top: 20rem;
+    }
+</style>
