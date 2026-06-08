@@ -16,6 +16,10 @@
             <img>
 			<p>Kick</p>
 		</li>
+		<li class="item">
+            <img>
+			<p>Kick</p>
+		</li>
 	</ul>
 </div>
 
@@ -25,11 +29,12 @@
         display: flex;
         flex-direction: row;
         gap: 1rem;
+		justify-content: space-between;
 	}
 	.item {
 		color: var(--primary-text);
-		height: 6rem;
-		width: 6rem;
+		height: 8rem;
+		width: 8rem;
 		background-color: var(--gray);
 		border-radius: 12px;
 	}
