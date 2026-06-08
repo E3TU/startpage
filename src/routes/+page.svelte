@@ -6,13 +6,13 @@
 </script>
 
 <div class="container">
-	<div class="small-item">
+	<div class="smallest-item">
 		<Clock />
 	</div>
 	<div class="small-item">
 		<Weather />
 	</div>
-	<div class="full-item">
+	<div class="item">
 		<Links />
 		<Search />
 	</div>
@@ -28,11 +28,17 @@
 		/* background-color: aqua; */
 		margin: 0 auto;
 		margin-top: 20rem;
+		gap: 3rem;
 	}
-	.small-item{
+	.smallest-item {
 		flex: 1;
+		height: 12rem;
 	}
-	.full-item{
+	.small-item {
+		flex: 2;
+		height: 12rem;
+	}
+	.item {
 		flex: 0 0 100%;
 	}
 </style>
