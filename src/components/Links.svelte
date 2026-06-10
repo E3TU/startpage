@@ -1,23 +1,23 @@
 <div class="links">
 	<ul>
 		<li class="item">
-            <img>
-			<p>Kick</p>
-		</li>
-        <li class="item">
-            <img>
-			<p>Kick</p>
-		</li>
-        <li class="item">
-            <img>
-			<p>Kick</p>
-		</li>
-        <li class="item">
-            <img>
+			<img />
 			<p>Kick</p>
 		</li>
 		<li class="item">
-            <img>
+			<img />
+			<p>Kick</p>
+		</li>
+		<li class="item">
+			<img />
+			<p>Kick</p>
+		</li>
+		<li class="item">
+			<img />
+			<p>Kick</p>
+		</li>
+		<li class="item">
+			<img />
 			<p>Kick</p>
 		</li>
 	</ul>
@@ -26,9 +26,9 @@
 <style>
 	ul {
 		list-style: none;
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
 		justify-content: space-between;
 	}
 	.item {
@@ -37,5 +37,6 @@
 		width: 8rem;
 		background-color: var(--gray);
 		border-radius: 12px;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 </style>
