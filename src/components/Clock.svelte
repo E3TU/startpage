@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { derived } from 'svelte/store';
 
-	let date: any = $state(new Date());
+	let date: Date = $state(new Date());
 
 	let hour = $derived(date.getHours());
 	let min = $derived(date.getMinutes());
@@ -10,10 +10,16 @@
 	let hourFormatted = $derived(String(hour).padStart(2, '0'));
 	let minFormatted = $derived(String(min).padStart(2, '0'));
 
+	let interval: number;
+
 	onMount(() => {
-		const interval = setInterval(() => {
+		interval = setInterval(() => {
 			date = new Date();
 		}, 1000);
+	});
+
+	onDestroy(() => {
+		clearInterval(interval);
 	});
 </script>
 
