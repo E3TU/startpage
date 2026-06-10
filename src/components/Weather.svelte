@@ -30,9 +30,10 @@
 		country: string;
 		city: string;
 		icon: string;
+		weatherDesc: string;
 	}
 
-	const url: string = `https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=${apiKey}&units=metric`;
+	const url: string = `https://api.openweathermap.org/data/2.5/weather?q=Oslo&appid=${apiKey}&units=metric`;
 
 	let weather: WeatherResponse | null = $state(null);
 
@@ -50,7 +51,8 @@
 			temperature: data.main.temp,
 			country: data.sys.country,
 			city: data.name,
-			icon: data.weather[0].icon
+			icon: data.weather[0].icon,
+			weatherDesc: data.weather[0].main
 		};
 	}
 
@@ -66,23 +68,23 @@
 	onDestroy(() => {
 		clearInterval(interval);
 	});
-
 </script>
 
 <div class="weather">
-	<div class="left">
-		<Icon class="weather-icon" icon={iconMap[weather?.icon ?? ''] ?? 'mdi:weather-cloudy'} />
-	</div>
-	<hr class="divider" />
-	<div class="right">
-		{#if weather}
+	{#if weather}
+		<div class="left">
+			<Icon class="weather-icon" icon={iconMap[weather?.icon ?? ''] ?? 'mdi:weather-cloudy'} />
+			<p class="weatherDesc">{weather.weatherDesc}</p>
+		</div>
+		<hr class="divider" />
+		<div class="right">
 			<h1 class="location">{weather.city}, {weather.country}</h1>
 			<p class="day">{weekday}</p>
 			<p class="temperature">{Math.round(weather.temperature)}°C</p>
-		{:else}
-			<p>Loading...</p>
-		{/if}
-	</div>
+		</div>
+	{:else}
+		<p class="loading">Loading...</p>
+	{/if}
 </div>
 
 <style>
@@ -93,12 +95,19 @@
 		height: 100%;
 		border-radius: 12px;
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		align-items: center;
+		justify-content: center;
 	}
 	.left {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-direction: column;
 		flex: 1;
+	}
+	.weatherDesc {
+		color: var(--primary-text);
+		font-size: 1.25rem;
 	}
 	:global(.weather-icon) {
 		color: var(--primary-text);
@@ -109,6 +118,10 @@
 		flex: 1;
 		color: var(--primary-text);
 		padding-left: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
 	}
 	.location {
 		font-size: 1.5rem;
@@ -122,6 +135,9 @@
 	}
 	.divider {
 		background-color: var(--primary-text);
-		margin: 1.5rem 0rem;
+		height: 70%;
+	}
+	.loading {
+		color: var(--primary-text);
 	}
 </style>
