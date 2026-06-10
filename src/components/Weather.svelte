@@ -1,5 +1,27 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
 	import { onMount, onDestroy } from 'svelte';
+
+	const iconMap: Record<string, string> = {
+		'01d': 'material-symbols:sunny',
+		'01n': 'mdi:weather-night',
+		'02d': 'carbon:partly-cloudy',
+		'02n': 'material-symbols:partly-cloudy-night-outline',
+		'03d': 'mdi:weather-cloudy',
+		'03n': 'mdi:weather-cloudy',
+		'04d': 'mdi:weather-cloudy',
+		'04n': 'mdi:weather-cloudy',
+		'09d': 'mdi:weather-pouring',
+		'09n': 'mdi:weather-pouring',
+		'10d': 'material-symbols:rainy-outline',
+		'10n': 'material-symbols:rainy-outline',
+		'11d': 'mdi:weather-lightning',
+		'11n': 'mdi:weather-lightning',
+		'13d': 'material-symbols:weather-snowy',
+		'13n': 'material-symbols:weather-snowy',
+		'50d': 'mdi:weather-fog',
+		'50n': 'mdi:weather-fog'
+	};
 
 	const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -7,13 +29,14 @@
 		temperature: number;
 		country: string;
 		city: string;
+		icon: string;
 	}
 
-	const url: string = `https://api.openweathermap.org/data/2.5/weather?q=Helsinki&appid=${apiKey}&units=metric`;
+	const url: string = `https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=${apiKey}&units=metric`;
 
 	let weather: WeatherResponse | null = $state(null);
 
-	const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+	const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 	let date: Date = $state(new Date());
 	let weekday = $derived(days[date.getDay()]);
@@ -26,7 +49,8 @@
 		weather = {
 			temperature: data.main.temp,
 			country: data.sys.country,
-			city: data.name
+			city: data.name,
+			icon: data.weather[0].icon
 		};
 	}
 
@@ -42,11 +66,12 @@
 	onDestroy(() => {
 		clearInterval(interval);
 	});
+
 </script>
 
 <div class="weather">
 	<div class="left">
-		<p>Icon</p>
+		<Icon class="weather-icon" icon={iconMap[weather?.icon ?? ''] ?? 'mdi:weather-cloudy'} />
 	</div>
 	<hr class="divider" />
 	<div class="right">
@@ -70,7 +95,15 @@
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 	.left {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		flex: 1;
+	}
+	:global(.weather-icon) {
+		color: var(--primary-text);
+		height: 128px;
+		width: 128px;
 	}
 	.right {
 		flex: 1;
