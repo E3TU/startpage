@@ -23,7 +23,7 @@
 		'50n': 'mdi:weather-fog'
 	};
 
-	const apiKey = import.meta.env.VITE_API_KEY;
+	const apiKey: string = import.meta.env.VITE_API_KEY;
 
 	interface WeatherResponse {
 		temperature: number;
@@ -37,13 +37,21 @@
 
 	let weather: WeatherResponse | null = $state(null);
 
-	const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+	const days: string[] = [
+		'Monday',
+		'Tuesday',
+		'Wednesday',
+		'Thursday',
+		'Friday',
+		'Saturday',
+		'Sunday'
+	];
 
 	let date: Date = $state(new Date());
 	let weekday = $derived(days[date.getDay()]);
 
 	async function fetchWeather() {
-		const res = await fetch(url);
+		const res: Response = await fetch(url);
 
 		const data = await res.json();
 
@@ -94,7 +102,8 @@
 		background-color: var(--gray);
 		height: 100%;
 		border-radius: 12px;
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+				box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 6px 2px;
+
 		align-items: center;
 		justify-content: center;
 	}
@@ -108,6 +117,7 @@
 	.weatherDesc {
 		color: var(--primary-text);
 		font-size: 1.25rem;
+		font-weight: bold;
 	}
 	:global(.weather-icon) {
 		color: var(--primary-text);
