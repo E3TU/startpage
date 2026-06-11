@@ -13,7 +13,8 @@
 		border-radius: 12px;
 		font-size: 1rem;
 		width: 100%;
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+				box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 6px 2px;
+
 	}
 	.search::placeholder {
 		color: var(--secondary-text);
