@@ -3,7 +3,9 @@
 	--gray: #24242a;
 	--primary-text: #fff;
 	--secondary-text: #c2c2c2;
-	--purple: #661288;
+	--red: #860000;
+	--green: #1faa52;
+	--blue: #1c65d3;
 }
 * {
 	margin: 0;
@@ -19,3 +21,4 @@ body {
 	box-sizing: border-box;
 	background-color: var(--bg-color);
 }
+
