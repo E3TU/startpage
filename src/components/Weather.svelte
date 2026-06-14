@@ -101,13 +101,11 @@
 		flex-direction: row;
 		background-color: var(--gray);
 		height: 100%;
-		border-radius: 12px;
-		box-shadow:
-			rgba(0, 0, 0, 0.3) 0px 1px 2px 0px,
-			rgba(0, 0, 0, 0.15) 0px 2px 6px 2px;
+		border-radius: 20px;
 		align-items: center;
 		justify-content: center;
-		border: 3px solid var(--blue);
+		/* box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; */
+		border: 3px solid var(--green);
 	}
 	.left {
 		display: flex;
