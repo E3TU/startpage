@@ -28,7 +28,6 @@
 		list-style: none;
 		display: flex;
 		flex-direction: row;
-		gap: 1rem;
 		justify-content: space-between;
 	}
 	.item {
