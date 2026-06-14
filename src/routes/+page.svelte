@@ -51,11 +51,11 @@
 	}
 	.smallest-item {
 		flex: 1;
-		height: auto;
+		height: 12rem;
 	}
 	.small-item {
 		flex: 2;
-		height: auto;
+		height: 12rem;
 	}
 	.item {
 		flex: 0 0 100%;
