@@ -6,7 +6,7 @@
 	let hour = $derived(date.getHours());
 	let min = $derived(date.getMinutes());
 
-	let month = $derived(date.toLocaleString('default', { month: 'short'}));
+	let month = $derived(date.toLocaleString('default', { month: 'short' }));
 
 	let day = $derived(date.getDate());
 
@@ -40,8 +40,7 @@
 		background-color: var(--gray);
 		height: 100%;
 		width: 18rem;
-		border-radius: 12px;
-		box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 6px 2px;
+		border-radius: 20px;
 		border: 3px solid var(--green);
 	}
 	.clock {
@@ -49,7 +48,7 @@
 		text-shadow: 8px 8px #000;
 		font-size: 5rem;
 	}
-	.datemonth{
+	.datemonth {
 		color: var(--primary-text);
 		font-size: 1.5rem;
 		font-weight: 600;

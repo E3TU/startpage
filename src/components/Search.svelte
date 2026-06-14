@@ -32,10 +32,10 @@
 	}
 	.search {
 		background-color: var(--gray);
-		border: 3px solid var(--red);
+		border: 3px solid var(--green);
 		padding: 1rem;
 		color: var(--primary-text);
-		border-radius: 12px;
+		border-radius: 30px;
 		font-size: 1rem;
 		width: 100%;
 		box-shadow:
