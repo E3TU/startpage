@@ -28,11 +28,11 @@
 
 <style>
 	.search-container {
-		margin-top: 2rem;
+		padding-top: 2rem;
 	}
 	.search {
 		background-color: var(--gray);
-		border: 3px solid var(--purple);
+		border: 3px solid var(--red);
 		padding: 1rem;
 		color: var(--primary-text);
 		border-radius: 12px;
