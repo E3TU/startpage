@@ -100,7 +100,7 @@
 		display: flex;
 		flex-direction: row;
 		background-color: var(--gray);
-		height: 12rem;
+		height: 100%;
 		border-radius: 12px;
 		box-shadow:
 			rgba(0, 0, 0, 0.3) 0px 1px 2px 0px,
