@@ -38,10 +38,11 @@
 		flex-direction: column;
 		align-items: center;
 		background-color: var(--gray);
-		height: 100%;
+		height: 12rem;
 		width: 18rem;
 		border-radius: 12px;
 		box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 6px 2px;
+		border: 3px solid var(--green);
 	}
 	.clock {
 		color: var(--primary-text);
