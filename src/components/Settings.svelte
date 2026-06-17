@@ -60,9 +60,18 @@
 			</div>
 			<h3>Effects(Frosted glass, opacity, blur)</h3>
 			<div class="effect-selector">
-				<p>Frosted glass</p>
-				<p>Opaque</p>
-				<p>Neon effectsb</p>
+				<label class="radio-buttons">
+					<input name="effect" type="radio" checked />
+					Frosted glass
+				</label>
+				<label class="radio-buttons">
+					<input name="effect" type="radio" checked />
+					Opaque
+				</label>
+				<label class="radio-buttons">
+					<input name="effect" type="radio" checked />
+					Neon effects
+				</label>
 			</div>
 		</div>
 		<!-- <h2>Search</h2>
@@ -97,7 +106,7 @@
 		border: none;
 	}
 	:global(.close-menu-icon) {
-		color: var(--blue);
+		color: var(--accent);
 		font-size: 2rem;
 		cursor: pointer;
 	}
@@ -138,9 +147,6 @@
 	#green {
 		background-color: var(--green);
 	}
-	p {
-		color: var(--secondary-text);
-	}
 	.background-selector {
 		display: flex;
 		flex-direction: column;
@@ -171,7 +177,7 @@
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
-		background: var(--green);
+		background: var(--accent);
 		transform: scale(0);
 		transition: transform 0.2s ease;
 	}
@@ -181,11 +187,16 @@
 	}
 
 	.radio-buttons:hover input {
-		border-color: var(--green);
+		border-color: var(--accent);
 	}
 
 	.radio-buttons input:focus-visible {
-		outline: 3px solid var(--green);
+		outline: 3px solid var(--accent);
 		outline-offset: 3px;
+	}
+	.effect-selector{
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
 </style>

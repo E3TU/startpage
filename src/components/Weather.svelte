@@ -105,7 +105,7 @@
 		align-items: center;
 		justify-content: center;
 		/* box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; */
-		border: 3px solid var(--green);
+		border: 3px solid var(--accent);
 	}
 	.left {
 		display: flex;

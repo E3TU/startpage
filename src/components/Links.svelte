@@ -42,6 +42,7 @@
 		width: 8rem;
 		background-color: var(--gray);
 		border-radius: 100px;
+		border: 3px solid var(--accent);
 		box-shadow:
 			rgba(0, 0, 0, 0.3) 0px 1px 2px 0px,
 			rgba(0, 0, 0, 0.15) 0px 2px 6px 2px;
