@@ -1,11 +1,13 @@
 :root {
-	--bg-color: #292929;
-	--gray: #24242a;
+	--bg-color: #1c1c1c;
+	--gray: rgb(35, 35, 36);
 	--primary-text: #fff;
 	--secondary-text: #c2c2c2;
 	--red: #860000;
-	--green: #1faa52;
+	--orange: #d05019;
+	--purple: #7018b0;
 	--blue: #1c65d3;
+	--green: #1faa52;
 }
 * {
 	margin: 0;
@@ -19,6 +21,10 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	background-color: var(--bg-color);
+	background-color: #3d5545;
+	/* background-image: url('../static/clkgtr.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100vh; */
 }
-
