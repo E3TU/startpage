@@ -3,7 +3,7 @@
 	--gray: rgb(35, 35, 36);
 	--primary-text: #fff;
 	--secondary-text: #c2c2c2;
-	--red: #860000;
+	--red: #c80000;
 	--orange: #d05019;
 	--purple: #7018b0;
 	--blue: #1c65d3;
@@ -21,10 +21,25 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	background-color: #3d5545;
+	background-color: var(--bg-color);
 	/* background-image: url('../static/clkgtr.png');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	height: 100vh; */
+}
+[data-accent="green"] {
+	--accent: var(--green);
+}
+[data-accent="blue"] {
+	--accent: var(--blue);
+}
+[data-accent="red"] {
+	--accent: var(--red);
+}
+[data-accent="purple"] {
+	--accent: var(--purple);
+}
+[data-accent="orange"] {
+	--accent: var(--orange);
 }
