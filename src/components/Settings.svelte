@@ -4,11 +4,19 @@
 	import { toggleMenu } from '$lib/state/menu.svelte';
 	import { fade, slide } from 'svelte/transition';
 
-	let openMenu: 'menu1' | 'menu2' | null = $state(null);
+	import { theme } from '$lib/state/theme.svelte';
+
+	let openMenu: 'menu1' | 'menu2' | null = $state('menu1');
 
 	function open(menu: 'menu1' | 'menu2') {
 		openMenu = menu;
 	}
+
+	const colors: string[] = ['red', 'orange', 'purple', 'blue', 'green'];
+
+	let selectedAccentColor: string = $state(theme.accent);
+	let selectedBackgroundColor: string = $state(theme.accent);
+	let selectedSvgColor: string = $state(theme.accent);
 </script>
 
 <div transition:slide={{ axis: 'x', duration: 500, delay: 100 }} class="settings-menu">
@@ -23,38 +31,47 @@
 			<h2>Customization</h2>
 			<h3>Accent color</h3>
 			<div class="color-selector">
-				<span id="red" class="color"></span>
-				<span id="orange" class="color"></span>
-				<span id="purple" class="color"></span>
-				<span id="blue" class="color"></span>
-				<span id="green" class="color"></span>
+				{#each colors as color}
+					<a
+						id={color}
+						class="color"
+						class:selected={selectedAccentColor === color}
+						onclick={() => (selectedAccentColor = color)}
+					></a>
+				{/each}
 			</div>
 			<h3>Background</h3>
 			<div class="background-selector">
 				<label class="radio-buttons">
-					<input onchange={() => open("menu1")} name="color" type="radio" checked />
+					<input onchange={() => open('menu1')} name="color" type="radio" checked />
 					Single color
 				</label>
-				{#if openMenu === "menu1"}
+				{#if openMenu === 'menu1'}
 					<div class="color-selector">
-						<span id="red" class="color"></span>
-						<span id="orange" class="color"></span>
-						<span id="purple" class="color"></span>
-						<span id="blue" class="color"></span>
-						<span id="green" class="color"></span>
+						{#each colors as color}
+							<a
+								id={color}
+								class="color"
+								class:selected={selectedBackgroundColor === color}
+								onclick={() => (selectedBackgroundColor = color)}
+							></a>
+						{/each}
 					</div>
 				{/if}
 				<label class="radio-buttons">
-					<input onchange={() => open("menu2")} name="color" type="radio" />
+					<input onchange={() => open('menu2')} name="color" type="radio" />
 					Svg background
 				</label>
-				{#if openMenu == "menu2"}
+				{#if openMenu == 'menu2'}
 					<div class="color-selector">
-						<span id="red" class="color"></span>
-						<span id="orange" class="color"></span>
-						<span id="purple" class="color"></span>
-						<span id="blue" class="color"></span>
-						<span id="green" class="color"></span>
+						{#each colors as color}
+							<a
+								id={color}
+								class="color"
+								class:selected={selectedSvgColor === color}
+								onclick={() => (selectedSvgColor = color)}
+							></a>
+						{/each}
 					</div>
 				{/if}
 			</div>
@@ -74,9 +91,9 @@
 				</label>
 			</div>
 		</div>
-		<!-- <h2>Search</h2>
-		<h2>Weather</h2>
-		<h2>Pinned sites</h2> -->
+		<h2>Search engine</h2>
+		<h2>Pinned sites</h2>
+		<h2>Weather settings</h2>
 	</div>
 </div>
 
@@ -131,6 +148,9 @@
 		height: 2.5rem;
 		border-radius: 50%;
 		cursor: pointer;
+	}
+	.selected {
+		border: 2px solid var(--primary-text);
 	}
 	#red {
 		background-color: var(--red);
@@ -194,7 +214,7 @@
 		outline: 3px solid var(--accent);
 		outline-offset: 3px;
 	}
-	.effect-selector{
+	.effect-selector {
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
