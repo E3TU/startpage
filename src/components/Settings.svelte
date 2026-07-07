@@ -14,9 +14,11 @@
 
 	const colors: string[] = ['red', 'orange', 'purple', 'blue', 'green'];
 
-	let selectedAccentColor: string = $state(theme.accent);
-	let selectedBackgroundColor: string = $state(theme.accent);
-	let selectedSvgColor: string = $state(theme.accent);
+	let selected = $state({
+		accent: theme.accent,
+		background: theme.accent,
+		svg: theme.accent
+	});
 </script>
 
 <div transition:slide={{ axis: 'x', duration: 500, delay: 100 }} class="settings-menu">
@@ -35,9 +37,15 @@
 					<a
 						id={color}
 						class="color"
-						class:selected={selectedAccentColor === color}
-						onclick={() => (selectedAccentColor = color)}
-					></a>
+						class:selected={selected.accent === color}
+						onclick={() => (selected.accent = color)}
+					>
+						{#if selected.accent === color}
+							<div transition:fade={{ duration: 500, delay: 0 }}>
+								<Icon class="verified" icon="material-symbols:check-rounded"></Icon>
+							</div>
+						{/if}
+					</a>
 				{/each}
 			</div>
 			<h3>Background</h3>
@@ -52,9 +60,15 @@
 							<a
 								id={color}
 								class="color"
-								class:selected={selectedBackgroundColor === color}
-								onclick={() => (selectedBackgroundColor = color)}
-							></a>
+								class:selected={selected.background === color}
+								onclick={() => (selected.background = color)}
+							>
+								{#if selected.background === color}
+									<div transition:fade={{ duration: 500, delay: 0 }}>
+										<Icon class="verified" icon="material-symbols:check-rounded"></Icon>
+									</div>
+								{/if}
+							</a>
 						{/each}
 					</div>
 				{/if}
@@ -68,9 +82,15 @@
 							<a
 								id={color}
 								class="color"
-								class:selected={selectedSvgColor === color}
-								onclick={() => (selectedSvgColor = color)}
-							></a>
+								class:selected={selected.svg === color}
+								onclick={() => (selected.svg = color)}
+							>
+								{#if selected.svg === color}
+									<div transition:fade={{ duration: 500, delay: 0 }}>
+										<Icon class="verified" icon="material-symbols:check-rounded"></Icon>
+									</div>
+								{/if}
+							</a>
 						{/each}
 					</div>
 				{/if}
@@ -144,13 +164,22 @@
 		gap: 1rem;
 	}
 	.color {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 2.5rem;
 		height: 2.5rem;
 		border-radius: 50%;
 		cursor: pointer;
+		transition: 0.5s;
 	}
 	.selected {
 		border: 2px solid var(--primary-text);
+		transition: 0.5s;
+	}
+	:global(.verified) {
+		color: var(--primary-text);
+		font-size: 1.5rem;
 	}
 	#red {
 		background-color: var(--red);
