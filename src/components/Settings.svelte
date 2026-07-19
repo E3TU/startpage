@@ -21,7 +21,7 @@
 	});
 </script>
 
-<div transition:slide={{ axis: 'x', duration: 500, delay: 100 }} class="settings-menu">
+<div transition:slide={{ axis: 'x', duration: 300, delay: 100 }} class="settings-menu">
 	<div class="top-wrapper">
 		<button onclick={toggleMenu} class="close-menu-button">
 			<Icon class="close-menu-icon" icon="material-symbols:close-rounded"></Icon>
@@ -29,7 +29,7 @@
 		<h1>Settings</h1>
 	</div>
 	<div class="settings">
-		<div class="customization">
+		<div class="customization-container">
 			<h2>Customization</h2>
 			<h3>Accent color</h3>
 			<div class="color-selector">
@@ -111,7 +111,10 @@
 				</label>
 			</div>
 		</div>
-		<h2>Search engine</h2>
+		<div class="search-engine-container">
+			<h2>Search engine</h2>
+			<input class="search-engine" placeholder="Search Engine Link" />
+		</div>
 		<h2>Pinned sites</h2>
 		<h2>Weather settings</h2>
 	</div>
@@ -127,7 +130,7 @@
 		background-color: var(--gray);
 		right: 0;
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-		padding: 1rem 0rem 0rem 1rem;
+		padding: 1rem 1rem 0rem 1rem;
 	}
 	.top-wrapper {
 		display: flex;
@@ -154,7 +157,7 @@
 	h3 {
 		color: var(--secondary-text);
 	}
-	.customization {
+	.customization-container {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -247,5 +250,25 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+	}
+	.search-engine {
+		border: 3px solid var(--accent);
+		outline: none;
+		width: 100%;
+		height: 2.5rem;
+		border-radius: 30px;
+		background-color: var(--bg-color);
+		color: var(--primary-text);
+		font-size: 1rem;
+		padding-left: 1rem;
+		margin-top: 0.5rem;
+		box-shadow:
+			rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+		transition: 0.5s ease-in;
+	}
+	.search-engine:focus {
+		border: 3px solid var(--primary-text);
+		transition: 0.5s ease-in;
 	}
 </style>
