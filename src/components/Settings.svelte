@@ -5,6 +5,7 @@
 	import { fade, slide } from 'svelte/transition';
 
 	import { theme } from '$lib/state/theme.svelte';
+	import { city } from '$lib/state/city.svelte';
 
 	let openMenu: 'menu1' | 'menu2' | null = $state('menu1');
 
@@ -113,10 +114,18 @@
 		</div>
 		<div class="search-engine-container">
 			<h2>Search engine</h2>
-			<input class="search-engine" placeholder="Search Engine Link" />
+			<div class="search-engine-flexbox">
+				<input class="search-engine" placeholder="Search Engine Link" />
+				<button id="search-engine-btn"><Icon icon="line-md:confirm"></Icon></button>
+			</div>
 		</div>
 		<h2>Pinned sites</h2>
-		<h2>Weather settings</h2>
+		<div class="weather-container">
+			<h2>Weather settings</h2>
+			<h3>City for weather data</h3>
+			<input class="weather-city" placeholder="Enter city..." value={city}>
+			<button id="weather-btn"><Icon icon="line-md:confirm"></Icon></button>
+		</div>
 	</div>
 </div>
 
@@ -155,6 +164,7 @@
 		color: var(--secondary-text);
 	}
 	h3 {
+		margin-top: 1rem;
 		color: var(--secondary-text);
 	}
 	.customization-container {
@@ -254,7 +264,7 @@
 	.search-engine {
 		border: 3px solid var(--accent);
 		outline: none;
-		width: 100%;
+		width: 80%;
 		height: 2.5rem;
 		border-radius: 30px;
 		background-color: var(--bg-color);
@@ -265,10 +275,61 @@
 		box-shadow:
 			rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
 			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-		transition: 0.5s ease-in;
+		transition: 0.3s ease-in;
 	}
 	.search-engine:focus {
 		border: 3px solid var(--primary-text);
-		transition: 0.5s ease-in;
+		transition: 0.3s ease-in;
+	}
+	.search-engine-flexbox {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		gap: 0.5rem;
+	}
+	#search-engine-btn {
+		border-radius: 100px;
+		height: 2.5rem;
+		width: 2.5rem;
+		background-color: transparent;
+		outline: none;
+		border: 3px solid var(--accent);
+		color: var(--primary-text);
+		font-size: 1rem;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+	#search-engine-btn:hover {
+		border: 3px solid transparent;
+		background-color: var(--accent);
+		transition: 0.3s;
+	}
+	.weather-city{
+		border: 3px solid var(--accent);
+		outline: none;
+		width: 80%;
+		height: 2.5rem;
+		border-radius: 30px;
+		background-color: var(--bg-color);
+		color: var(--primary-text);
+		font-size: 1rem;
+		padding-left: 1rem;
+		margin-top: 0.5rem;
+		box-shadow:
+			rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+		transition: 0.3s ease-in;
+	}
+	#weather-btn{
+		border-radius: 100px;
+		height: 2.5rem;
+		width: 2.5rem;
+		background-color: transparent;
+		outline: none;
+		border: 3px solid var(--accent);
+		color: var(--primary-text);
+		font-size: 1rem;
+		cursor: pointer;
+		transition: 0.3s;
 	}
 </style>
