@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { onMount, onDestroy } from 'svelte';
+	import { city } from '$lib/state/city.svelte';
 
 	const iconMap: Record<string, string> = {
 		'01d': 'material-symbols:sunny',
@@ -33,7 +34,7 @@
 		weatherDesc: string;
 	}
 
-	const url: string = `https://api.openweathermap.org/data/2.5/weather?q=Helsinki&appid=${apiKey}&units=metric`;
+	const url: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 	let weather: WeatherResponse | null = $state(null);
 
