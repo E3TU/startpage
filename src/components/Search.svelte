@@ -50,7 +50,7 @@
 			rgba(0, 0, 0, 0.3) 0px 1px 2px 0px,
 			rgba(0, 0, 0, 0.15) 0px 2px 6px 2px;
 		outline: none;
-		transition: 0.5s ease-in;
+		transition: 0.3s ease-in;
 		width: 100%;
 		flex: 1;
 		height: 4rem;
@@ -60,7 +60,7 @@
 		font-size: 1rem;
 	}
 	.search:focus {
-		transition: 0.5s ease-in;
+		transition: 0.3s ease-in;
 		border: 3px solid var(--primary-text);
 	}
 	#search-btn {
