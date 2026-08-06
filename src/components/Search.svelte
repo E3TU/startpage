@@ -6,10 +6,6 @@
 
 	let search = $derived(url + encodeURIComponent(searchTerm));
 
-	$effect(() => {
-		console.log(searchTerm);
-	});
-
 	function handleSubmit(e: Event) {
 		e.preventDefault();
 		if(searchTerm) {
