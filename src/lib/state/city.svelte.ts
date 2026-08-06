@@ -1,1 +1,3 @@
-export let city: string = $state("Helsinki");
+export let city = $state({
+    selectedCity: 'Helsinki'
+});
