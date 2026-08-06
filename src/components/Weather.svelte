@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import { onMount, onDestroy } from 'svelte';
 	import { city } from '$lib/state/city.svelte';
 
 	const iconMap: Record<string, string> = {
@@ -33,9 +32,6 @@
 		icon: string;
 		weatherDesc: string;
 	}
-
-	const url: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
 	let weather: WeatherResponse | null = $state(null);
 
 	const days: string[] = [
@@ -51,7 +47,27 @@
 	let date: Date = $state(new Date());
 	let weekday = $derived(days[date.getDay()]);
 
-	async function fetchWeather() {
+	$effect(() => {
+		if (!city.selectedCity) return;
+
+		fetchWeather();
+	});
+
+	$effect(() => {
+		const now = new Date();
+
+		const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+		const timeout = setTimeout(() => {
+			date = new Date();
+		}, tomorrow.getTime() - now.getTime());
+
+		return () => clearTimeout(timeout);
+	});
+
+	export async function fetchWeather() {
+		const url: string = `https://api.openweathermap.org/data/2.5/weather?q=${city.selectedCity}&appid=${apiKey}&units=metric`;
+
 		const res: Response = await fetch(url);
 
 		const data = await res.json();
@@ -64,19 +80,6 @@
 			weatherDesc: data.weather[0].main
 		};
 	}
-
-	let interval: number;
-
-	onMount(() => {
-		fetchWeather();
-		interval = setInterval(() => {
-			date = new Date();
-		}, 1000);
-	});
-
-	onDestroy(() => {
-		clearInterval(interval);
-	});
 </script>
 
 <div class="weather">

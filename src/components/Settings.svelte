@@ -20,6 +20,18 @@
 		background: theme.accent,
 		svg: theme.accent
 	});
+
+	let inputCity: string = $state('');
+
+	$effect(() => {
+		const value = inputCity;
+
+		const timeout = setTimeout(() => {
+			city.selectedCity = value;
+		}, 500);
+
+		return () => clearTimeout(timeout);
+	});
 </script>
 
 <div transition:slide={{ axis: 'x', duration: 300, delay: 100 }} class="settings-menu">
@@ -122,8 +134,8 @@
 		<h2>Pinned sites</h2>
 		<div class="weather-container">
 			<h2>Weather settings</h2>
-			<h3>City for weather data</h3>
-			<input class="weather-city" placeholder="Enter city..." value={city}>
+			<h4>City for weather data</h4>
+			<input class="weather-city" placeholder="Enter city..." bind:value={inputCity} />
 			<button id="weather-btn"><Icon icon="line-md:confirm"></Icon></button>
 		</div>
 	</div>
@@ -165,6 +177,10 @@
 	}
 	h3 {
 		margin-top: 1rem;
+		color: var(--secondary-text);
+	}
+	h4 {
+		margin-top: 0.5rem;
 		color: var(--secondary-text);
 	}
 	.customization-container {
@@ -304,7 +320,7 @@
 		background-color: var(--accent);
 		transition: 0.3s;
 	}
-	.weather-city{
+	.weather-city {
 		border: 3px solid var(--accent);
 		outline: none;
 		width: 80%;
@@ -320,7 +336,7 @@
 			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 		transition: 0.3s ease-in;
 	}
-	#weather-btn{
+	#weather-btn {
 		border-radius: 100px;
 		height: 2.5rem;
 		width: 2.5rem;
