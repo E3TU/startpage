@@ -1,7 +1,16 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 
-	let url: string = 'https://search.brave.com/search?q=';
+	import { searchEngine } from '$lib/state/search.svelte';
+
+	let url: string = $state("");
+	
+	$effect(() => {
+		if(!searchEngine.url) return;
+		url = searchEngine.url;
+		
+	})
+
 	let searchTerm = $state('');
 
 	let search = $derived(url + encodeURIComponent(searchTerm));
