@@ -6,6 +6,7 @@
 
 	import { theme } from '$lib/state/theme.svelte';
 	import { city } from '$lib/state/city.svelte';
+	import { searchEngine } from '$lib/state/search.svelte';
 
 	let openMenu: 'menu1' | 'menu2' | null = $state('menu1');
 
@@ -22,16 +23,29 @@
 	});
 
 	let inputCity: string = $state('');
+	inputCity = city.selectedCity;
 
-	$effect(() => {
-		const value = inputCity;
+	function saveCity() {
+		city.selectedCity = inputCity;
+	}
 
-		const timeout = setTimeout(() => {
-			city.selectedCity = value;
-		}, 500);
+	let inputSearchEngine: string = $state('');
+	inputSearchEngine = searchEngine.url;
 
-		return () => clearTimeout(timeout);
-	});
+	function saveSearchEngine() {
+		console.log(inputSearchEngine);
+		searchEngine.url = inputSearchEngine;
+	}
+
+	// $effect(() => {
+	// 	const value = inputCity;
+
+	// 	const timeout = setTimeout(() => {
+	// 		city.selectedCity = value;
+	// 	}, 500);
+
+	// 	return () => clearTimeout(timeout);
+	// });
 </script>
 
 <div transition:slide={{ axis: 'x', duration: 300, delay: 100 }} class="settings-menu">
@@ -127,16 +141,24 @@
 		<div class="search-engine-container">
 			<h2>Search engine</h2>
 			<div class="search-engine-flexbox">
-				<input class="search-engine" placeholder="Search Engine Link" />
-				<button id="search-engine-btn"><Icon icon="line-md:confirm"></Icon></button>
+			<form onsubmit={saveSearchEngine}>
+				<input
+					class="search-engine"
+					placeholder="Search Engine Link"
+					bind:value={inputSearchEngine}
+				/>
+				<button id="search-engine-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button>
+			</form>
 			</div>
 		</div>
 		<h2>Pinned sites</h2>
 		<div class="weather-container">
 			<h2>Weather settings</h2>
 			<h4>City for weather data</h4>
-			<input class="weather-city" placeholder="Enter city..." bind:value={inputCity} />
-			<button id="weather-btn"><Icon icon="line-md:confirm"></Icon></button>
+			<form onsubmit={saveCity}>
+				<input class="weather-city" placeholder="Enter city..." bind:value={inputCity} />
+				<button type="submit" id="weather-btn"><Icon icon="line-md:confirm"></Icon></button>
+			</form>
 		</div>
 	</div>
 </div>
