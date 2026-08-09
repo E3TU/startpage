@@ -33,7 +33,6 @@
 	inputSearchEngine = searchEngine.url;
 
 	function saveSearchEngine() {
-		console.log(inputSearchEngine);
 		searchEngine.url = inputSearchEngine;
 	}
 
@@ -146,6 +145,7 @@
 					class="search-engine"
 					placeholder="Search Engine Link"
 					bind:value={inputSearchEngine}
+					title={inputSearchEngine}
 				/>
 				<button id="search-engine-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button>
 			</form>
