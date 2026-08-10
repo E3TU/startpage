@@ -1,27 +1,22 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
+    import Icon from '@iconify/svelte';
+    import { searchEngine } from '$lib/state/search.svelte';
 
-	import { searchEngine } from '$lib/state/search.svelte';
+    let searchTerm = $state('');
 
-	let url: string = $state("");
-	
-	$effect(() => {
-		if(!searchEngine.url) return;
-		url = searchEngine.url;
-		
-	})
+    let search = $derived(
+        searchEngine.url + encodeURIComponent(searchTerm)
+    );
 
-	let searchTerm = $state('');
+    function handleSubmit(e: Event) {
+        e.preventDefault();
 
-	let search = $derived(url + encodeURIComponent(searchTerm));
+        if (searchTerm) {
+            window.location.href = search;
+        }
 
-	function handleSubmit(e: Event) {
-		e.preventDefault();
-		if(searchTerm) {
-			window.location.href = search;
-		}
-		searchTerm = '';
-	}
+        searchTerm = '';
+    }
 </script>
 
 <div class="search-container">
