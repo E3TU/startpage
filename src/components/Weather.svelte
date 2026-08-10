@@ -35,13 +35,13 @@
 	let weather: WeatherResponse | null = $state(null);
 
 	const days: string[] = [
+		'Sunday',
 		'Monday',
 		'Tuesday',
 		'Wednesday',
 		'Thursday',
 		'Friday',
-		'Saturday',
-		'Sunday'
+		'Saturday'
 	];
 
 	let date: Date = $state(new Date());
