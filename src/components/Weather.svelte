@@ -48,9 +48,11 @@
 	let weekday = $derived(days[date.getDay()]);
 
 	$effect(() => {
-		if (!city.selectedCity) return;
+		const selectedCity = city.selectedCity;
 
-		fetchWeather();
+		if (!selectedCity) return;
+
+		fetchWeather(selectedCity);
 	});
 
 	$effect(() => {
@@ -65,7 +67,7 @@
 		return () => clearTimeout(timeout);
 	});
 
-	export async function fetchWeather() {
+	export async function fetchWeather(selectedCity: string) {
 		const url: string = `https://api.openweathermap.org/data/2.5/weather?q=${city.selectedCity}&appid=${apiKey}&units=metric`;
 
 		const res: Response = await fetch(url);
