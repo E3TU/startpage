@@ -16,35 +16,29 @@
 
 	const colors: string[] = ['red', 'orange', 'purple', 'blue', 'green'];
 
+	// let currentColor: string = $state("");
+
 	let selected = $state({
 		accent: theme.accent,
 		background: theme.accent,
-		svg: theme.accent
 	});
 
-	let inputCity: string = $state('');
-	inputCity = city.selectedCity;
+	let inputCity: string = $state(city.selectedCity);
 
 	function saveCity() {
 		city.selectedCity = inputCity;
 	}
 
-	let inputSearchEngine: string = $state('');
-	inputSearchEngine = searchEngine.url;
+	let inputSearchEngine: string = $state(searchEngine.url);
 
 	function saveSearchEngine() {
 		searchEngine.url = inputSearchEngine;
 	}
 
-	// $effect(() => {
-	// 	const value = inputCity;
-
-	// 	const timeout = setTimeout(() => {
-	// 		city.selectedCity = value;
-	// 	}, 500);
-
-	// 	return () => clearTimeout(timeout);
-	// });
+	$effect(() => {
+		theme.accent = selected.accent;
+		console.log(selected.accent);
+	});
 </script>
 
 <div transition:slide={{ axis: 'x', duration: 300, delay: 100 }} class="settings-menu">
@@ -64,6 +58,7 @@
 						id={color}
 						class="color"
 						class:selected={selected.accent === color}
+						style={`background-color: var(--${color});`}
 						onclick={() => (selected.accent = color)}
 					>
 						{#if selected.accent === color}
@@ -87,6 +82,7 @@
 								id={color}
 								class="color"
 								class:selected={selected.background === color}
+								style={`background-color: var(--${color});`}
 								onclick={() => (selected.background = color)}
 							>
 								{#if selected.background === color}
@@ -108,10 +104,11 @@
 							<a
 								id={color}
 								class="color"
-								class:selected={selected.svg === color}
-								onclick={() => (selected.svg = color)}
+								class:selected={selected.background === color}
+								style={`background-color: var(--${color});`}
+								onclick={() => (selected.background = color)}
 							>
-								{#if selected.svg === color}
+								{#if selected.background === color}
 									<div transition:fade={{ duration: 500, delay: 0 }}>
 										<Icon class="verified" icon="material-symbols:check-rounded"></Icon>
 									</div>
@@ -140,15 +137,15 @@
 		<div class="search-engine-container">
 			<h2>Search engine</h2>
 			<div class="search-engine-flexbox">
-			<form onsubmit={saveSearchEngine}>
-				<input
-					class="search-engine"
-					placeholder="Search Engine Link"
-					bind:value={inputSearchEngine}
-					title={inputSearchEngine}
-				/>
-				<button id="search-engine-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button>
-			</form>
+				<form onsubmit={saveSearchEngine}>
+					<input
+						class="search-engine"
+						placeholder="Search Engine Link"
+						bind:value={inputSearchEngine}
+						title={inputSearchEngine}
+					/>
+					<button id="search-engine-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button>
+				</form>
 			</div>
 		</div>
 		<h2>Pinned sites</h2>
@@ -231,21 +228,6 @@
 	:global(.verified) {
 		color: var(--primary-text);
 		font-size: 1.5rem;
-	}
-	#red {
-		background-color: var(--red);
-	}
-	#orange {
-		background-color: var(--orange);
-	}
-	#purple {
-		background-color: var(--purple);
-	}
-	#blue {
-		background-color: var(--blue);
-	}
-	#green {
-		background-color: var(--green);
 	}
 	.background-selector {
 		display: flex;
