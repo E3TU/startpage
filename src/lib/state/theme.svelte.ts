@@ -1,3 +1,3 @@
 export let theme = $state({
-	accent: 'green'
+	accent: 'green',
 });

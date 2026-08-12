@@ -110,8 +110,7 @@
 		border-radius: 20px;
 		align-items: center;
 		justify-content: center;
-		/* box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; */
-		border: 3px solid var(--accent);
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 	.left {
 		display: flex;

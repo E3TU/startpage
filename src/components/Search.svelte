@@ -46,9 +46,7 @@
 		color: var(--primary-text);
 		border-radius: 30px;
 		font-size: 1rem;
-		box-shadow:
-			rgba(0, 0, 0, 0.3) 0px 1px 2px 0px,
-			rgba(0, 0, 0, 0.15) 0px 2px 6px 2px;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		outline: none;
 		transition: 0.3s ease-in;
 		width: 100%;
@@ -75,6 +73,7 @@
 		cursor: pointer;
 		border: 3px solid transparent;
 		transition: 0.2s ease-in;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 	#search-btn:hover {
 		border: 3px solid var(--accent);

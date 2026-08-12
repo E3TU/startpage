@@ -45,9 +45,8 @@
 		flex-wrap: wrap;
 		width: 50rem;
 		height: auto;
-		overflow: hidden;
 		margin-top: 20rem;
-		gap: 3rem;
+		gap: 2rem;
 	}
 	.smallest-item {
 		flex: 1;
@@ -71,7 +70,7 @@
 		transition: ease-in 0.5s;
 	}
 	:global(.settings-icon):hover {
-		color: var(--green);
+		color: var(--accent);
 		transition: ease-in 0.5s;
 	}
 	.open-menu {

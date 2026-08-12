@@ -41,8 +41,8 @@
 		height: 100%;
 		width: 18rem;
 		border-radius: 20px;
-		border: 3px solid var(--accent);
 		/* backdrop-filter: blur(10px); */
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 	.clock {
 		color: var(--primary-text);

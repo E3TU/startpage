@@ -8,20 +8,9 @@
 	import { city } from '$lib/state/city.svelte';
 	import { searchEngine } from '$lib/state/search.svelte';
 
-	let openMenu: 'menu1' | 'menu2' | null = $state('menu1');
+	const accentColors: string[] = ['red', 'orange', 'purple', 'blue', 'green'];
 
-	function open(menu: 'menu1' | 'menu2') {
-		openMenu = menu;
-	}
-
-	const colors: string[] = ['red', 'orange', 'purple', 'blue', 'green'];
-
-	// let currentColor: string = $state("");
-
-	let selected = $state({
-		accent: theme.accent,
-		background: theme.accent,
-	});
+	let selectedAccent = $derived(theme.accent);
 
 	let inputCity: string = $state(city.selectedCity);
 
@@ -36,8 +25,7 @@
 	}
 
 	$effect(() => {
-		theme.accent = selected.accent;
-		console.log(selected.accent);
+		theme.accent = selectedAccent;
 	});
 </script>
 
@@ -53,84 +41,42 @@
 			<h2>Customization</h2>
 			<h3>Accent color</h3>
 			<div class="color-selector">
-				{#each colors as color}
-					<a
+				{#each accentColors as color}
+					<button
 						id={color}
 						class="color"
-						class:selected={selected.accent === color}
+						class:selected={selectedAccent === color}
 						style={`background-color: var(--${color});`}
-						onclick={() => (selected.accent = color)}
+						onclick={() => (selectedAccent = color)}
 					>
-						{#if selected.accent === color}
+						{#if selectedAccent === color}
 							<div transition:fade={{ duration: 500, delay: 0 }}>
 								<Icon class="verified" icon="material-symbols:check-rounded"></Icon>
 							</div>
 						{/if}
-					</a>
+					</button>
 				{/each}
 			</div>
 			<h3>Background</h3>
 			<div class="background-selector">
 				<label class="radio-buttons">
-					<input onchange={() => open('menu1')} name="color" type="radio" checked />
+					<input name="color" type="radio" checked />
 					Single color
 				</label>
-				{#if openMenu === 'menu1'}
-					<div class="color-selector">
-						{#each colors as color}
-							<a
-								id={color}
-								class="color"
-								class:selected={selected.background === color}
-								style={`background-color: var(--${color});`}
-								onclick={() => (selected.background = color)}
-							>
-								{#if selected.background === color}
-									<div transition:fade={{ duration: 500, delay: 0 }}>
-										<Icon class="verified" icon="material-symbols:check-rounded"></Icon>
-									</div>
-								{/if}
-							</a>
-						{/each}
-					</div>
-				{/if}
 				<label class="radio-buttons">
-					<input onchange={() => open('menu2')} name="color" type="radio" />
+					<input name="color" type="radio" />
 					Svg background
 				</label>
-				{#if openMenu == 'menu2'}
-					<div class="color-selector">
-						{#each colors as color}
-							<a
-								id={color}
-								class="color"
-								class:selected={selected.background === color}
-								style={`background-color: var(--${color});`}
-								onclick={() => (selected.background = color)}
-							>
-								{#if selected.background === color}
-									<div transition:fade={{ duration: 500, delay: 0 }}>
-										<Icon class="verified" icon="material-symbols:check-rounded"></Icon>
-									</div>
-								{/if}
-							</a>
-						{/each}
-					</div>
-				{/if}
 			</div>
 			<h3>Effects(Frosted glass, opacity, blur)</h3>
 			<div class="effect-selector">
 				<label class="radio-buttons">
 					<input name="effect" type="radio" checked />
+					None
+				</label>
+				<label class="radio-buttons">
+					<input name="effect" type="radio" />
 					Frosted glass
-				</label>
-				<label class="radio-buttons">
-					<input name="effect" type="radio" checked />
-					Opaque
-				</label>
-				<label class="radio-buttons">
-					<input name="effect" type="radio" checked />
-					Neon effects
 				</label>
 			</div>
 		</div>
@@ -220,6 +166,7 @@
 		border-radius: 50%;
 		cursor: pointer;
 		transition: 0.5s;
+		border: none;
 	}
 	.selected {
 		border: 2px solid var(--primary-text);

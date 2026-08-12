@@ -1,13 +1,16 @@
 :root {
-	--bg-color: #1c1c1c;
+	--bg-color: #191919;
 	--gray: rgb(35, 35, 36);
 	--primary-text: #fff;
 	--secondary-text: #c2c2c2;
+
+	/* Accent colors */
 	--red: #c80000;
 	--orange: #d05019;
 	--purple: #7018b0;
 	--blue: #1c65d3;
 	--green: #1faa52;
+
 }
 * {
 	margin: 0;
@@ -43,3 +46,4 @@ body {
 [data-accent="orange"] {
 	--accent: var(--orange);
 }
+
