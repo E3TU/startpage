@@ -29,21 +29,38 @@
 	{#if menu.open}
 		<Settings />
 	{/if}
+	<div class="bottom-spacer"></div>
+
+	<div class="wave" aria-hidden="true">
+		<svg viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+			<path
+				fill="#6366f1"
+				d="
+          M0 100
+          C240 180 480 180 720 100
+          C960 20 1200 20 1440 100
+          V180
+          H0
+          Z
+        "
+			/>
+		</svg>
+	</div>
 </div>
 
 <style>
 	.main-container {
 		display: flex;
-		flex-direction: row;
-		justify-content: center;
+		flex-direction: column;
+		align-items: center;
 		width: 100%;
-		height: auto;
+		min-height: 100vh;
 	}
 	.widget-container {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		width: 50rem;
+		width: min(50rem, calc(100% - 2rem));
 		height: auto;
 		margin-top: 20rem;
 		gap: 2rem;
@@ -77,5 +94,23 @@
 		background-color: transparent;
 		outline: none;
 		border: none;
+	}
+	.bottom-spacer{
+		flex: 1;
+		width: 100%;
+	}
+	.wave {
+		width: 100%;
+		height: clamp(80px, 12vw, 180px);
+		flex-shrink: 0;
+	}
+
+	.wave svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+	.wave path{
+		fill: var(--accent);
 	}
 </style>
