@@ -85,22 +85,33 @@
 			<div class="search-engine-flexbox">
 				<form onsubmit={saveSearchEngine}>
 					<input
-						class="search-engine"
+						class="text-input"
 						placeholder="Search Engine Link"
 						bind:value={inputSearchEngine}
 						title={inputSearchEngine}
 					/>
-					<button id="search-engine-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button>
+					<button class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button>
 				</form>
 			</div>
 		</div>
-		<h2>Pinned sites</h2>
+		<div class="pinned-sites">
+			<h2>Pinned sites</h2>
+			<div class="links">
+				<ol>
+					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
+					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
+					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
+					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
+					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
+				</ol>
+			</div>
+		</div>
 		<div class="weather-container">
 			<h2>Weather settings</h2>
 			<h4>City for weather data</h4>
 			<form onsubmit={saveCity}>
-				<input class="weather-city" placeholder="Enter city..." bind:value={inputCity} />
-				<button type="submit" id="weather-btn"><Icon icon="line-md:confirm"></Icon></button>
+				<input class="text-input" placeholder="Enter city..." bind:value={inputCity} />
+				<button class="text-input-btn" type="submit"><Icon icon="line-md:confirm"></Icon></button>
 			</form>
 		</div>
 	</div>
@@ -117,6 +128,43 @@
 		right: 0;
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		padding: 1rem 1rem 0rem 1rem;
+	}
+	.text-input {
+		border: 3px solid var(--accent);
+		outline: none;
+		width: 80%;
+		height: 2.5rem;
+		border-radius: 30px;
+		background-color: var(--bg-color);
+		color: var(--primary-text);
+		font-size: 1rem;
+		padding-left: 1rem;
+		margin-top: 0.5rem;
+		box-shadow:
+			rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+		transition: 0.3s ease-in;
+	}
+	.text-input:focus {
+		border: 3px solid var(--primary-text);
+		transition: 0.3s ease-in;
+	}
+	.text-input-btn{
+		border-radius: 100px;
+		height: 2.5rem;
+		width: 2.5rem;
+		background-color: transparent;
+		outline: none;
+		border: 3px solid var(--accent);
+		color: var(--primary-text);
+		font-size: 1rem;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+	.text-input-btn:hover {
+		border: 3px solid transparent;
+		background-color: var(--accent);
+		transition: 0.3s;
 	}
 	.top-wrapper {
 		display: flex;
@@ -228,75 +276,31 @@
 		flex-direction: column;
 		gap: 0.5rem;
 	}
-	.search-engine {
-		border: 3px solid var(--accent);
-		outline: none;
-		width: 80%;
-		height: 2.5rem;
-		border-radius: 30px;
-		background-color: var(--bg-color);
-		color: var(--primary-text);
-		font-size: 1rem;
-		padding-left: 1rem;
-		margin-top: 0.5rem;
-		box-shadow:
-			rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-		transition: 0.3s ease-in;
-	}
-	.search-engine:focus {
-		border: 3px solid var(--primary-text);
-		transition: 0.3s ease-in;
-	}
 	.search-engine-flexbox {
 		display: flex;
 		align-items: center;
 		width: 100%;
 		gap: 0.5rem;
 	}
-	#search-engine-btn {
-		border-radius: 100px;
-		height: 2.5rem;
-		width: 2.5rem;
-		background-color: transparent;
-		outline: none;
-		border: 3px solid var(--accent);
+	.pinned-sites {
+		display: flex;
+		flex-direction: column;
 		color: var(--primary-text);
-		font-size: 1rem;
-		cursor: pointer;
-		transition: 0.3s;
 	}
-	#search-engine-btn:hover {
-		border: 3px solid transparent;
-		background-color: var(--accent);
-		transition: 0.3s;
+	ol {
+		display: flex;
+		flex-direction: column;
+		list-style-type: decimal;
+		list-style-position: inside;
+		gap: 0.5rem;
 	}
-	.weather-city {
-		border: 3px solid var(--accent);
-		outline: none;
-		width: 80%;
-		height: 2.5rem;
-		border-radius: 30px;
-		background-color: var(--bg-color);
-		color: var(--primary-text);
-		font-size: 1rem;
-		padding-left: 1rem;
-		margin-top: 0.5rem;
-		box-shadow:
-			rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-		transition: 0.3s ease-in;
+	#link {
+		height: 2rem;
+		padding-left: 0.5rem;
 	}
-	#weather-btn {
-		border-radius: 100px;
-		height: 2.5rem;
-		width: 2.5rem;
-		background-color: transparent;
-		outline: none;
-		border: 3px solid var(--accent);
-		color: var(--primary-text);
-		font-size: 1rem;
-		cursor: pointer;
-		transition: 0.3s;
+	#link-btn{
+		height: 2rem;
+		width: 2rem;
+		margin-left: 0.5rem;
 	}
 </style>
