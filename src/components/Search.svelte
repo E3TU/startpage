@@ -45,7 +45,7 @@
 		padding: 1rem;
 		color: var(--primary-text);
 		border-radius: 30px;
-		font-size: 1rem;
+		font-size: 1.1rem;
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		outline: none;
 		transition: 0.3s ease-in;
@@ -55,7 +55,7 @@
 	}
 	.search::placeholder {
 		color: var(--secondary-text);
-		font-size: 1rem;
+		font-size: inherit;
 	}
 	.search:focus {
 		transition: 0.3s ease-in;
