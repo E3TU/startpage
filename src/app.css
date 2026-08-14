@@ -25,11 +25,11 @@ body {
 	padding: 0;
 	box-sizing: border-box;
 	background-color: var(--bg-color);
-	/* background-image: url('../static/clkgtr.png');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 100vh; */
+	/* background-image: url('../static/blob-scene-haikei.svg');
+	background-size: 100% auto;
+	background-position: bottom center;
+	background-repeat: no-repeat; */
+	height: 100vh;
 }
 [data-accent="green"] {
 	--accent: var(--green);
