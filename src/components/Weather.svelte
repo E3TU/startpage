@@ -120,7 +120,7 @@
 		flex: 1;
 	}
 	.weatherDesc {
-		color: var(--primary-text);
+		color: var(--accent);
 		font-size: 1.25rem;
 		font-weight: bold;
 	}
@@ -144,12 +144,13 @@
 	}
 	.day {
 		padding-top: 0.25rem;
+		color: var(--accent);
 	}
 	.temperature {
 		font-size: 4rem;
 	}
 	.divider {
-		background-color: var(--primary-text);
+		border-color: var(--accent);
 		height: 70%;
 	}
 	.loading {

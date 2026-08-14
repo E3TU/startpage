@@ -50,7 +50,7 @@
 		font-size: 5rem;
 	}
 	.datemonth {
-		color: var(--primary-text);
+		color: var(--accent);
 		font-size: 1.5rem;
 		font-weight: 600;
 	}
