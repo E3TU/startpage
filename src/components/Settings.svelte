@@ -7,6 +7,7 @@
 	import { theme } from '$lib/state/theme.svelte';
 	import { city } from '$lib/state/city.svelte';
 	import { searchEngine } from '$lib/state/search.svelte';
+	import { pinnedSites } from '$lib/state/sites.svelte';
 
 	const accentColors: string[] = ['red', 'orange', 'purple', 'blue', 'green'];
 
@@ -97,13 +98,31 @@
 		<div class="pinned-sites">
 			<h2>Pinned sites</h2>
 			<div class="links">
-				<ol>
-					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
-					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
-					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
-					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
-					<li><input id="link" class="text-input" /><button id="link-btn" class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button></li>
-				</ol>
+					{#each pinnedSites as site, i}
+						<h3>Site {i + 1}</h3>
+						<input
+							id="link"
+							class="text-input"
+							bind:value={site.title}
+							placeholder="Title"
+							onkeydown={(e) => {
+								if (e.key === 'Enter') {
+									e.currentTarget.blur();
+								}
+							}}
+						/>
+						<input
+							id="link"
+							class="text-input"
+							bind:value={site.link}
+							placeholder="Link"
+							onkeydown={(e) => {
+								if (e.key === 'Enter') {
+									e.currentTarget.blur();
+								}
+							}}
+						/>
+					{/each}
 			</div>
 		</div>
 		<div class="weather-container">
@@ -127,7 +146,8 @@
 		background-color: var(--gray);
 		right: 0;
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-		padding: 1rem 1rem 0rem 1rem;
+		padding: 1rem 1rem 1rem 1rem;
+		overflow-y: scroll;
 	}
 	.text-input {
 		border: 3px solid var(--accent);
@@ -149,7 +169,7 @@
 		border: 3px solid var(--primary-text);
 		transition: 0.3s ease-in;
 	}
-	.text-input-btn{
+	.text-input-btn {
 		border-radius: 100px;
 		height: 2.5rem;
 		width: 2.5rem;
@@ -287,18 +307,17 @@
 		flex-direction: column;
 		color: var(--primary-text);
 	}
-	ol {
+	.links {
 		display: flex;
 		flex-direction: column;
-		list-style-type: decimal;
-		list-style-position: inside;
+		list-style-type: none;
 		gap: 0.5rem;
 	}
 	#link {
 		height: 2rem;
 		padding-left: 0.5rem;
 	}
-	#link-btn{
+	#link-btn {
 		height: 2rem;
 		width: 2rem;
 		margin-left: 0.5rem;
