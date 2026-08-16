@@ -1,31 +1,25 @@
+<script lang="ts">
+	import { pinnedSites } from '$lib/state/sites.svelte';
+</script>
+
 <div class="links">
-	<ul>
-		<li class="item">
-			<img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://www.youtube.com&size=64" alt="favicon" width="64px" height="64px" />
-			<p>Test</p>
-		</li>
-		<li class="item">
-			<img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://www.kick.com&size=64" alt="favicon" width="64px" height="64px" />
-			<p>Test</p>
-		</li>
-		<li class="item">
-			<img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://www.tradingview.com&size=64" alt="favicon" width="64px" height="64px" />
-			<p>Test</p>
-		</li>
-		<li class="item">
-			<img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://www.reddit.com&size=64" alt="favicon" width="64px" height="64px" />
-			<p>Test</p>
-		</li>
-		<li class="item">
-			<img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://www.github.com&size=64" alt="favicon" width="64px" height="64px" />
-			<p>Test</p>
-		</li>
-	</ul>
+		{#each pinnedSites as site}
+			{#if site.title && site.link}
+				<a href={site.link} class="item">
+					<img
+						src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url={site.link}&size=64"
+						alt="favicon"
+						width="64px"
+						height="64px"
+					/>
+					<p>{site.title}</p>
+				</a>
+			{/if}
+		{/each}
 </div>
 
 <style>
-	ul {
-		list-style: none;
+	.links {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -37,13 +31,13 @@
 		flex-direction: column;
 		gap: 0.5rem;
 		padding-bottom: 1rem;
-		color: var(--primary-text);
+		color: var(--accent);
 		height: 8rem;
 		width: 8rem;
 		background-color: var(--gray);
 		border-radius: 20px;
-		/* border: 3px solid var(--accent); */
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		cursor: pointer;
+		text-decoration: none;
 	}
 </style>
