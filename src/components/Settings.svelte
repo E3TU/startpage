@@ -8,6 +8,7 @@
 	import { city } from '$lib/state/city.svelte';
 	import { searchEngine } from '$lib/state/search.svelte';
 	import { pinnedSites } from '$lib/state/sites.svelte';
+	import { onMount } from 'svelte';
 
 	const accentColors: string[] = ['red', 'orange', 'purple', 'blue', 'green'];
 
@@ -15,18 +16,36 @@
 
 	let inputCity: string = $state(city.selectedCity);
 
-	function saveCity() {
-		city.selectedCity = inputCity;
-	}
+	$effect(() => {
+		const value = inputCity;
 
-	let inputSearchEngine: string = $state(searchEngine.url);
-
-	function saveSearchEngine() {
-		searchEngine.url = inputSearchEngine;
-	}
+		const timeout = setTimeout(() => {
+			city.selectedCity = value;
+		}, 700);
+		return () => clearTimeout(timeout);
+	});
 
 	$effect(() => {
 		theme.accent = selectedAccent;
+	});
+
+	onMount(() => {
+		const savedCity = localStorage.getItem("city");
+		const savedSites = localStorage.getItem('pinnedSites');
+
+		if(savedCity !== null) {
+			city.selectedCity = savedCity;
+			inputCity = savedCity;
+		}
+
+		if (savedSites !== null) {
+			pinnedSites.splice(0, pinnedSites.length, ...JSON.parse(savedSites));
+		}
+	});
+
+	$effect(() => {
+		localStorage.setItem("city", inputCity);
+		localStorage.setItem("pinnedSites", JSON.stringify(pinnedSites));
 	});
 </script>
 
@@ -84,54 +103,48 @@
 		<div class="search-engine-container">
 			<h2>Search engine</h2>
 			<div class="search-engine-flexbox">
-				<form onsubmit={saveSearchEngine}>
-					<input
-						class="text-input"
-						placeholder="Search Engine Link"
-						bind:value={inputSearchEngine}
-						title={inputSearchEngine}
-					/>
-					<button class="text-input-btn"><Icon icon="line-md:confirm" type="submit"></Icon></button>
-				</form>
+				<input
+					class="text-input"
+					placeholder="Search Engine Link"
+					bind:value={searchEngine.url}
+					title={searchEngine.url}
+				/>
 			</div>
 		</div>
 		<div class="pinned-sites">
 			<h2>Pinned sites</h2>
 			<div class="links">
-					{#each pinnedSites as site, i}
-						<h3>Site {i + 1}</h3>
-						<input
-							id="link"
-							class="text-input"
-							bind:value={site.title}
-							placeholder="Title"
-							onkeydown={(e) => {
-								if (e.key === 'Enter') {
-									e.currentTarget.blur();
-								}
-							}}
-						/>
-						<input
-							id="link"
-							class="text-input"
-							bind:value={site.link}
-							placeholder="Link"
-							onkeydown={(e) => {
-								if (e.key === 'Enter') {
-									e.currentTarget.blur();
-								}
-							}}
-						/>
-					{/each}
+				{#each pinnedSites as site, i}
+					<h3>Site {i + 1}</h3>
+					<input
+						id="link"
+						class="text-input"
+						bind:value={site.title}
+						placeholder="Title"
+						onkeydown={(e) => {
+							if (e.key === 'Enter') {
+								e.currentTarget.blur();
+							}
+						}}
+					/>
+					<input
+						id="link"
+						class="text-input"
+						bind:value={site.link}
+						placeholder="Link"
+						onkeydown={(e) => {
+							if (e.key === 'Enter') {
+								e.currentTarget.blur();
+							}
+						}}
+					/>
+				{/each}
 			</div>
 		</div>
 		<div class="weather-container">
 			<h2>Weather settings</h2>
 			<h4>City for weather data</h4>
-			<form onsubmit={saveCity}>
-				<input class="text-input" placeholder="Enter city..." bind:value={inputCity} />
-				<button class="text-input-btn" type="submit"><Icon icon="line-md:confirm"></Icon></button>
-			</form>
+			<input class="text-input" placeholder="Enter city..." bind:value={inputCity} />
 		</div>
 	</div>
 </div>
@@ -168,23 +181,6 @@
 	.text-input:focus {
 		border: 3px solid var(--primary-text);
 		transition: 0.3s ease-in;
-	}
-	.text-input-btn {
-		border-radius: 100px;
-		height: 2.5rem;
-		width: 2.5rem;
-		background-color: transparent;
-		outline: none;
-		border: 3px solid var(--accent);
-		color: var(--primary-text);
-		font-size: 1rem;
-		cursor: pointer;
-		transition: 0.3s;
-	}
-	.text-input-btn:hover {
-		border: 3px solid transparent;
-		background-color: var(--accent);
-		transition: 0.3s;
 	}
 	.top-wrapper {
 		display: flex;
