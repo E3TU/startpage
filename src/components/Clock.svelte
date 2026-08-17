@@ -41,7 +41,6 @@
 		height: 100%;
 		width: 18rem;
 		border-radius: 20px;
-		/* backdrop-filter: blur(10px); */
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 	.clock {
