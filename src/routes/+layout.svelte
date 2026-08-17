@@ -15,7 +15,6 @@
 
 	let loaded = $state(false);
 
-	// Load saved settings when the app starts
 	onMount(() => {
 		const savedCity = localStorage.getItem('city');
 		const savedSearchEngine = localStorage.getItem('searchEngine');
@@ -51,11 +50,9 @@
 			theme.accent = savedAccentColor;
 		}
 
-		// Tell the save effect that loading is finished
 		loaded = true;
 	});
 
-	// Save settings whenever the global state changes
 	$effect(() => {
 		if (!loaded) return;
 
