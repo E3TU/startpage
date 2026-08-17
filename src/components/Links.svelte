@@ -13,17 +13,15 @@
 
 <div class="links">
 	{#each pinnedSites as site}
-		{#if site.title && site.link}
-			<a href={site.link} class="item">
-				<img
-					src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url={site.link}&size=64"
-					alt="favicon"
-					width="64px"
-					height="64px"
-				/>
-				<p>{site.title}</p>
-			</a>
-		{/if}
+		<a href={site.link} class="item">
+			<img
+				src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url={site.link}&size=64"
+				alt="favicon"
+				width="64px"
+				height="64px"
+			/>
+			<p>{site.title}</p>
+		</a>
 	{/each}
 </div>
 
