@@ -30,10 +30,10 @@
 	});
 
 	onMount(() => {
-		const savedCity = localStorage.getItem("city");
+		const savedCity = localStorage.getItem('city');
 		const savedSites = localStorage.getItem('pinnedSites');
 
-		if(savedCity !== null) {
+		if (savedCity !== null) {
 			city.selectedCity = savedCity;
 			inputCity = savedCity;
 		}
@@ -44,9 +44,32 @@
 	});
 
 	$effect(() => {
-		localStorage.setItem("city", inputCity);
-		localStorage.setItem("pinnedSites", JSON.stringify(pinnedSites));
+		localStorage.setItem('city', inputCity);
+		localStorage.setItem('pinnedSites', JSON.stringify(pinnedSites));
 	});
+
+	let editTitles = $state(pinnedSites.map((site) => site.title));
+	let editLinks = $state(pinnedSites.map((site) => site.link));
+
+	function saveTitle(i: number) {
+		const value = editTitles[i].trim();
+
+		if (value !== '') {
+			pinnedSites[i].title = value;
+		} else {
+			editTitles[i] = pinnedSites[i].title;
+		}
+	}
+
+	function saveLink(i: number) {
+		const value = editLinks[i].trim();
+
+		if (value !== '') {
+			pinnedSites[i].link = value;
+		} else {
+			editLinks[i] = pinnedSites[i].link;
+		}
+	}
 </script>
 
 <div transition:slide={{ axis: 'x', duration: 300, delay: 100 }} class="settings-menu">
@@ -119,10 +142,11 @@
 					<input
 						id="link"
 						class="text-input"
-						bind:value={site.title}
+						bind:value={editTitles[i]}
 						placeholder="Title"
 						onkeydown={(e) => {
 							if (e.key === 'Enter') {
+								saveTitle(i);
 								e.currentTarget.blur();
 							}
 						}}
@@ -130,10 +154,11 @@
 					<input
 						id="link"
 						class="text-input"
-						bind:value={site.link}
+						bind:value={editLinks[i]}
 						placeholder="Link"
 						onkeydown={(e) => {
 							if (e.key === 'Enter') {
+								saveLink(i);
 								e.currentTarget.blur();
 							}
 						}}
@@ -144,7 +169,16 @@
 		<div class="weather-container">
 			<h2>Weather settings</h2>
 			<h4>City for weather data</h4>
-			<input class="text-input" placeholder="Enter city..." bind:value={inputCity} />
+			<input
+				class="text-input"
+				placeholder="Enter city..."
+				bind:value={inputCity}
+				onkeydown={(e) => {
+					if (e.key === 'Enter') {
+						e.currentTarget.blur();
+					}
+				}}
+			/>
 		</div>
 	</div>
 </div>
