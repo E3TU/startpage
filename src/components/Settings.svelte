@@ -31,11 +31,16 @@
 
 	onMount(() => {
 		const savedCity = localStorage.getItem('city');
+		const savedSearchEngine = localStorage.getItem('searchEngine');
 		const savedSites = localStorage.getItem('pinnedSites');
 
 		if (savedCity !== null) {
 			city.selectedCity = savedCity;
 			inputCity = savedCity;
+		}
+
+		if (savedSearchEngine !== null) {
+			searchEngine.url = savedSearchEngine;
 		}
 
 		if (savedSites !== null) {
@@ -45,6 +50,7 @@
 
 	$effect(() => {
 		localStorage.setItem('city', inputCity);
+		localStorage.setItem('searchEngine', searchEngine.url);
 		localStorage.setItem('pinnedSites', JSON.stringify(pinnedSites));
 	});
 
@@ -131,8 +137,27 @@
 					placeholder="Search Engine Link"
 					bind:value={searchEngine.url}
 					title={searchEngine.url}
+					onkeydown={(e) => {
+						if (e.key === 'Enter') {
+							e.currentTarget.blur();
+						}
+					}}
 				/>
 			</div>
+		</div>
+		<div class="weather-container">
+			<h2>Weather settings</h2>
+			<h4>City for weather data</h4>
+			<input
+				class="text-input"
+				placeholder="Enter city..."
+				bind:value={inputCity}
+				onkeydown={(e) => {
+					if (e.key === 'Enter') {
+						e.currentTarget.blur();
+					}
+				}}
+			/>
 		</div>
 		<div class="pinned-sites">
 			<h2>Pinned sites</h2>
@@ -165,20 +190,6 @@
 					/>
 				{/each}
 			</div>
-		</div>
-		<div class="weather-container">
-			<h2>Weather settings</h2>
-			<h4>City for weather data</h4>
-			<input
-				class="text-input"
-				placeholder="Enter city..."
-				bind:value={inputCity}
-				onkeydown={(e) => {
-					if (e.key === 'Enter') {
-						e.currentTarget.blur();
-					}
-				}}
-			/>
 		</div>
 	</div>
 </div>
