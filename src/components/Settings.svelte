@@ -92,11 +92,8 @@
 				{/each}
 			</div>
 
-			<h3>Background</h3>
-
-			<h3>Background</h3>
-
 			<div class="background-selector">
+				<h3>Background</h3>
 				<label class="radio-buttons">
 					<input
 						name="background"
@@ -117,20 +114,6 @@
 						onchange={() => (background.type = 'svg')}
 					/>
 					Svg background
-				</label>
-			</div>
-
-			<h3>Effects (Frosted glass, opacity, blur)</h3>
-
-			<div class="effect-selector">
-				<label class="radio-buttons">
-					<input name="effect" type="radio" checked />
-					None
-				</label>
-
-				<label class="radio-buttons">
-					<input name="effect" type="radio" />
-					Frosted glass
 				</label>
 			</div>
 		</div>
@@ -312,8 +295,7 @@
 		font-size: 1.5rem;
 	}
 
-	.background-selector,
-	.effect-selector {
+	.background-selector {
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
