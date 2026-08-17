@@ -17,17 +17,19 @@
 
 	onMount(() => {
 		const savedCity = localStorage.getItem('city');
-		const savedSearchEngine = localStorage.getItem('searchEngine');
-		const savedSites = localStorage.getItem('pinnedSites');
 		const savedAccentColor = localStorage.getItem('accentColor');
 		const savedBackground = localStorage.getItem('background');
-
-		if (savedBackground === 'color' || savedBackground === 'svg') {
-			background.type = savedBackground;
-		}
+		const savedSearchEngine = localStorage.getItem('searchEngine');
+		const savedSites = localStorage.getItem('pinnedSites');
 
 		if (savedCity !== null) {
 			city.selectedCity = savedCity;
+		}
+		if (savedAccentColor !== null) {
+			theme.accent = savedAccentColor;
+		}
+		if (savedBackground === 'color' || savedBackground === 'svg') {
+			background.type = savedBackground;
 		}
 
 		if (savedSearchEngine !== null) {
@@ -46,9 +48,6 @@
 			}
 		}
 
-		if (savedAccentColor !== null) {
-			theme.accent = savedAccentColor;
-		}
 
 		loaded = true;
 	});
@@ -57,10 +56,10 @@
 		if (!loaded) return;
 
 		localStorage.setItem('city', city.selectedCity);
-		localStorage.setItem('searchEngine', searchEngine.url);
-		localStorage.setItem('pinnedSites', JSON.stringify(pinnedSites));
 		localStorage.setItem('accentColor', theme.accent);
 		localStorage.setItem('background', background.type);
+		localStorage.setItem('searchEngine', searchEngine.url);
+		localStorage.setItem('pinnedSites', JSON.stringify(pinnedSites));
 	});
 
 	// Apply accent color globally
