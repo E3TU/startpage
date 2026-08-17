@@ -1,14 +1,5 @@
 <script lang="ts">
 	import { pinnedSites } from '$lib/state/sites.svelte';
-	import { onMount } from 'svelte';
-
-	onMount(() => {
-		const savedSites = localStorage.getItem('pinnedSites');
-
-		if (savedSites !== null) {
-			pinnedSites.splice(0, pinnedSites.length, ...JSON.parse(savedSites));
-		}
-	});
 </script>
 
 <div class="links">

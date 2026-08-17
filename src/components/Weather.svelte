@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { city } from '$lib/state/city.svelte';
-	import { onMount } from 'svelte';
 
 	const iconMap: Record<string, string> = {
 		'01d': 'material-symbols:sunny',
@@ -47,14 +46,6 @@
 
 	let date: Date = $state(new Date());
 	let weekday = $derived(days[date.getDay()]);
-
-	onMount(() => {
-		const savedCity = localStorage.getItem("city");
-
-		if(savedCity !== null) {
-			city.selectedCity = savedCity;
-		}
-	});
 
 	$effect(() => {
 		const selectedCity = city.selectedCity;
