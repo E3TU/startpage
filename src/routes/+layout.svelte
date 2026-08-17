@@ -9,6 +9,7 @@
 	import { city } from '$lib/state/city.svelte';
 	import { searchEngine } from '$lib/state/search.svelte';
 	import { pinnedSites } from '$lib/state/sites.svelte';
+	import { background } from '$lib/state/background.svelte';
 
 	let { children } = $props();
 
@@ -20,6 +21,11 @@
 		const savedSearchEngine = localStorage.getItem('searchEngine');
 		const savedSites = localStorage.getItem('pinnedSites');
 		const savedAccentColor = localStorage.getItem('accentColor');
+		const savedBackground = localStorage.getItem('background');
+
+		if (savedBackground === 'color' || savedBackground === 'svg') {
+			background.type = savedBackground;
+		}
 
 		if (savedCity !== null) {
 			city.selectedCity = savedCity;
@@ -57,6 +63,7 @@
 		localStorage.setItem('searchEngine', searchEngine.url);
 		localStorage.setItem('pinnedSites', JSON.stringify(pinnedSites));
 		localStorage.setItem('accentColor', theme.accent);
+		localStorage.setItem('background', background.type);
 	});
 
 	// Apply accent color globally

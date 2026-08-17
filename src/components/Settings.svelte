@@ -7,6 +7,7 @@
 	import { city } from '$lib/state/city.svelte';
 	import { searchEngine } from '$lib/state/search.svelte';
 	import { pinnedSites } from '$lib/state/sites.svelte';
+	import { background } from '$lib/state/background.svelte';
 
 	const accentColors: string[] = ['red', 'orange', 'purple', 'blue', 'green'];
 
@@ -93,14 +94,28 @@
 
 			<h3>Background</h3>
 
+			<h3>Background</h3>
+
 			<div class="background-selector">
 				<label class="radio-buttons">
-					<input name="color" type="radio" checked />
+					<input
+						name="background"
+						type="radio"
+						value="color"
+						checked={background.type === 'color'}
+						onchange={() => (background.type = 'color')}
+					/>
 					Single color
 				</label>
 
 				<label class="radio-buttons">
-					<input name="color" type="radio" />
+					<input
+						name="background"
+						type="radio"
+						value="svg"
+						checked={background.type === 'svg'}
+						onchange={() => (background.type = 'svg')}
+					/>
 					Svg background
 				</label>
 			</div>

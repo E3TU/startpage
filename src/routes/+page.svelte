@@ -4,6 +4,7 @@
 	import Links from '../components/Links.svelte';
 	import Weather from '../components/Weather.svelte';
 	import Settings from '../components/Settings.svelte';
+	import { background } from '$lib/state/background.svelte';
 
 	import Icon from '@iconify/svelte';
 
@@ -31,21 +32,22 @@
 	{/if}
 	<div class="bottom-spacer"></div>
 
-	<div class="wave" aria-hidden="true">
-		<svg viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-			<path
-				fill="#6366f1"
-				d="
-          M0 100
-          C240 180 480 180 720 100
-          C960 20 1200 20 1440 100
-          V180
-          H0
-          Z
-        "
-			/>
-		</svg>
-	</div>
+	{#if background.type === 'svg'}
+		<div class="wave" aria-hidden="true">
+			<svg viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+				<path
+					d="
+					M0 100
+					C240 180 480 180 720 100
+					C960 20 1200 20 1440 100
+					V180
+					H0
+					Z
+				"
+				/>
+			</svg>
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -95,7 +97,7 @@
 		outline: none;
 		border: none;
 	}
-	.bottom-spacer{
+	.bottom-spacer {
 		flex: 1;
 		width: 100%;
 	}
@@ -110,7 +112,7 @@
 		width: 100%;
 		height: 100%;
 	}
-	.wave path{
+	.wave path {
 		fill: var(--accent);
 	}
 </style>
