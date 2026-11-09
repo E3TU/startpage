@@ -33,6 +33,7 @@
 		weatherDesc: string;
 	}
 	let weather: WeatherResponse | null = $state(null);
+	let error: string | null = $state(null);
 
 	const days: string[] = [
 		'Sunday',
@@ -68,36 +69,55 @@
 	});
 
 	export async function fetchWeather(selectedCity: string) {
-		const url: string = `https://api.openweathermap.org/data/2.5/weather?q=${city.selectedCity}&appid=${apiKey}&units=metric`;
+		error = null;
+		weather = null;
 
-		const res: Response = await fetch(url);
+		const url: string = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city.selectedCity)}&appid=${apiKey}&units=metric`;
 
-		const data = await res.json();
+		try {
+			const res: Response = await fetch(url);
+			const data = await res.json();
 
-		weather = {
-			temperature: data.main.temp,
-			country: data.sys.country,
-			city: data.name,
-			icon: data.weather[0].icon,
-			weatherDesc: data.weather[0].main
-		};
+			if (!res.ok) {
+				throw new Error(data.message ?? 'Weather unavailable');
+			}
+
+			weather = {
+				temperature: data.main.temp,
+				country: data.sys.country,
+				city: data.name,
+				icon: data.weather[0].icon,
+				weatherDesc: data.weather[0].main
+			};
+		} catch (err) {
+			error = err instanceof Error ? err.message : 'Weather unavailable';
+		}
 	}
 </script>
 
 <div class="weather">
-	{#if weather}
+	{#if error}
+		<div class="error-state">
+			<p class="error-text">{error}</p>
+			<button class="retry" onclick={() => fetchWeather(city.selectedCity)}>Retry</button>
+		</div>
+	{:else if weather}
 		<div class="left">
 			<Icon class="weather-icon" icon={iconMap[weather?.icon ?? ''] ?? 'mdi:weather-cloudy'} />
 			<p class="weatherDesc">{weather.weatherDesc}</p>
 		</div>
-		<hr class="divider" />
+		<div class="divider"></div>
 		<div class="right">
 			<h1 class="location">{weather.city}, {weather.country}</h1>
 			<p class="day">{weekday}</p>
 			<p class="temperature">{Math.round(weather.temperature)}°C</p>
 		</div>
 	{:else}
-		<p class="loading">Loading...</p>
+		<div class="loading-state">
+			<div class="skeleton skeleton-icon"></div>
+			<div class="skeleton skeleton-line"></div>
+			<div class="skeleton skeleton-line short"></div>
+		</div>
 	{/if}
 </div>
 
@@ -107,11 +127,12 @@
 		flex-direction: row;
 		background-color: var(--gray);
 		height: 100%;
-		border-radius: 20px;
+		border-radius: 16px;
 		align-items: center;
 		justify-content: center;
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		box-shadow: 0 4px 12px var(--shadow-color);
 		overflow: hidden;
+		min-height: 12rem;
 	}
 	.left {
 		display: flex;
@@ -122,8 +143,8 @@
 	}
 	.weatherDesc {
 		color: var(--accent);
-		font-size: 1.25rem;
-		font-weight: bold;
+		font-size: clamp(1rem, 3vw, 1.25rem);
+		font-weight: 600;
 	}
 	:global(.weather-icon) {
 		color: var(--primary-text);
@@ -144,19 +165,79 @@
 		font-size: clamp(1rem, 4vw, 1.5rem);
 		padding-top: 1rem;
 		text-align: center;
+		font-weight: 500;
 	}
 	.day {
 		padding-top: 0.25rem;
 		color: var(--accent);
+		font-weight: 500;
 	}
 	.temperature {
 		font-size: clamp(2.5rem, 8vw, 4rem);
+		font-weight: 600;
 	}
 	.divider {
-		border-color: var(--accent);
+		width: 1px;
+		background-color: rgba(255, 255, 255, 0.08);
 		height: 70%;
 	}
-	.loading {
+	.loading-state {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 1rem;
+	}
+	.skeleton {
+		background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 75%);
+		background-size: 200% 100%;
+		animation: shimmer 1.5s infinite;
+		border-radius: 8px;
+	}
+	.skeleton-icon {
+		width: 64px;
+		height: 64px;
+		border-radius: 50%;
+	}
+	.skeleton-line {
+		width: 8rem;
+		height: 1rem;
+	}
+	.skeleton-line.short {
+		width: 4rem;
+	}
+	.error-state {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 1rem;
+		text-align: center;
+	}
+	.error-text {
 		color: var(--primary-text);
+		font-size: 0.95rem;
+	}
+	.retry {
+		background-color: var(--accent);
+		color: var(--primary-text);
+		border: none;
+		border-radius: 8px;
+		padding: 0.5rem 1rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: transform 0.2s ease, background-color 0.2s ease;
+	}
+	.retry:hover {
+		background-color: color-mix(in srgb, var(--accent) 85%, white);
+	}
+	.retry:active {
+		transform: scale(0.96);
+	}
+	@keyframes shimmer {
+		0% { background-position: 200% 0; }
+		100% { background-position: -200% 0; }
 	}
 </style>

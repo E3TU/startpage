@@ -40,17 +40,19 @@
 		background-color: var(--gray);
 		height: 12rem;
 		width: 100%;
-		border-radius: 20px;
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		border-radius: 16px;
+		box-shadow: 0 4px 12px var(--shadow-color);
 	}
 	.clock {
 		color: var(--primary-text);
-		text-shadow: 8px 8px #000;
 		font-size: clamp(3rem, 10vw, 5rem);
+		font-weight: 700;
+		line-height: 1;
 	}
 	.datemonth {
 		color: var(--accent);
 		font-size: clamp(1rem, 4vw, 1.5rem);
 		font-weight: 600;
+		margin-top: 0.25rem;
 	}
 </style>

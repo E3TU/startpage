@@ -19,7 +19,7 @@
 <style>
 	.links {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
 		gap: 1rem;
 	}
 	.item {
@@ -33,10 +33,22 @@
 		height: clamp(6rem, 18vw, 8rem);
 		width: 100%;
 		background-color: var(--gray);
-		border-radius: 20px;
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-		cursor: pointer;
+		border-radius: 16px;
+		box-shadow: 0 4px 12px var(--shadow-color);
 		text-decoration: none;
+		transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+	}
+	.item:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 20px var(--shadow-color);
+		background-color: color-mix(in srgb, var(--gray) 95%, var(--accent));
+	}
+	.item:active {
+		transform: translateY(-1px) scale(0.98);
+	}
+	.item:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
 	}
 	.item img {
 		width: clamp(40px, 10vw, 64px);
@@ -44,11 +56,7 @@
 	}
 	.item p {
 		font-size: clamp(0.8rem, 2.5vw, 1rem);
-	}
-
-	@media (max-width: 480px) {
-		.links {
-			grid-template-columns: repeat(3, 1fr);
-		}
+		font-weight: 500;
+		color: var(--primary-text);
 	}
 </style>

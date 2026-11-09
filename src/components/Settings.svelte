@@ -195,118 +195,160 @@
 	.settings-menu {
 		display: flex;
 		flex-direction: column;
-		position: absolute;
+		position: fixed;
 		width: min(20rem, 100%);
-		height: 100vh;
+		height: 100dvh;
 		background-color: var(--gray);
 		right: 0;
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		top: 0;
+		box-shadow: var(--shadow-color) -4px 0 24px;
 		padding: 1rem;
-		overflow-y: scroll;
+		overflow-y: auto;
+		z-index: 30;
 	}
 
 	.text-input {
-		border: 3px solid var(--accent);
+		border: 2px solid rgba(255, 255, 255, 0.1);
 		outline: none;
 		width: 100%;
-		height: 2.5rem;
-		border-radius: 30px;
+		height: 2.75rem;
+		border-radius: 12px;
 		background-color: var(--bg-color);
 		color: var(--primary-text);
 		font-size: 1rem;
 		padding-left: 1rem;
 		margin-top: 0.5rem;
-		box-shadow:
-			rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-		transition: 0.3s ease-in;
+		box-shadow: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
 	}
 
 	.text-input:focus {
-		border: 3px solid var(--primary-text);
+		border-color: var(--accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
 	}
 
 	.top-wrapper {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 	}
 
 	h1 {
 		color: var(--primary-text);
+		font-size: 1.5rem;
+		font-weight: 600;
 	}
 
 	h2 {
-		margin-top: 1rem;
+		margin-top: 1.5rem;
 		color: var(--secondary-text);
+		font-size: 0.875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 	}
 
 	h3 {
 		margin-top: 1rem;
 		color: var(--secondary-text);
+		font-size: 0.9rem;
+		font-weight: 500;
 	}
 
 	h4 {
 		margin-top: 0.5rem;
 		color: var(--secondary-text);
+		font-size: 0.875rem;
+		font-weight: 500;
 	}
 
 	.close-menu-button {
 		background-color: transparent;
 		outline: none;
 		border: none;
+		cursor: pointer;
+		padding: 0.25rem;
+		border-radius: 8px;
+		transition: background-color 0.2s ease;
+	}
+
+	.close-menu-button:hover {
+		background-color: rgba(255, 255, 255, 0.08);
+	}
+
+	.close-menu-button:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
 	}
 
 	:global(.close-menu-icon) {
-		color: var(--accent);
-		font-size: 2rem;
-		cursor: pointer;
+		color: var(--primary-text);
+		font-size: 1.75rem;
 	}
 
 	.customization-container {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 0.5rem;
 	}
 
 	.color-selector {
 		display: flex;
-		gap: 1rem;
+		gap: 0.75rem;
 	}
 
 	.color {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 2.25rem;
+		height: 2.25rem;
 		border-radius: 50%;
 		cursor: pointer;
-		transition: 0.5s;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		border: none;
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	}
+
+	.color:hover {
+		transform: scale(1.1);
+	}
+
+	.color:active {
+		transform: scale(0.95);
+	}
+
+	.color:focus-visible {
+		outline: 2px solid var(--primary-text);
+		outline-offset: 2px;
 	}
 
 	.selected {
-		border: 2px solid var(--primary-text);
+		box-shadow: inset 0 0 0 2px var(--primary-text), 0 0 0 2px var(--accent);
 	}
 
 	:global(.verified) {
 		color: var(--primary-text);
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 	}
 
 	.background-selector {
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+		margin-top: 0.5rem;
 	}
 
 	.radio-buttons {
 		display: flex;
 		align-items: center;
 		cursor: pointer;
-		gap: 1rem;
+		gap: 0.75rem;
 		color: var(--secondary-text);
+		font-size: 0.95rem;
+		padding: 0.5rem 0;
 	}
 
 	.radio-buttons input {
@@ -314,12 +356,13 @@
 		-webkit-appearance: none;
 		width: 18px;
 		height: 18px;
-		border: 2px solid #888;
+		border: 2px solid #666;
 		border-radius: 50%;
 		display: grid;
 		place-content: center;
 		margin: 0;
 		cursor: pointer;
+		transition: border-color 0.2s ease;
 	}
 
 	.radio-buttons input::before {
@@ -336,13 +379,17 @@
 		transform: scale(1);
 	}
 
+	.radio-buttons input:checked {
+		border-color: var(--accent);
+	}
+
 	.radio-buttons:hover input {
 		border-color: var(--accent);
 	}
 
 	.radio-buttons input:focus-visible {
-		outline: 3px solid var(--accent);
-		outline-offset: 3px;
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
 	}
 
 	.search-engine-flexbox {

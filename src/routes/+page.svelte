@@ -11,7 +11,7 @@
 	import { toggleMenu, menu } from '$lib/state/menu.svelte';
 </script>
 
-<div class="main-container">
+<main class="main-container">
 	<div class="widget-container">
 		<div class="smallest-item">
 			<Clock />
@@ -24,10 +24,11 @@
 			<Search />
 		</div>
 	</div>
-	<button class="open-menu" onclick={toggleMenu}>
+	<button class="open-menu" onclick={toggleMenu} aria-label="Settings">
 		<Icon class="settings-icon" icon="material-symbols:settings"></Icon>
 	</button>
 	{#if menu.open}
+		<button class="backdrop" onclick={toggleMenu} aria-label="Close settings"></button>
 		<Settings />
 	{/if}
 	<div class="bottom-spacer"></div>
@@ -48,7 +49,7 @@
 			</svg>
 		</div>
 	{/if}
-</div>
+</main>
 
 <style>
 	.main-container {
@@ -99,16 +100,29 @@
 		top: 2rem;
 		font-size: 2rem;
 		cursor: pointer;
-		transition: ease-in 0.5s;
+		transition: ease-in 0.2s;
+		filter: drop-shadow(0 2px 4px var(--shadow-color));
 	}
 	:global(.settings-icon):hover {
 		color: var(--accent);
-		transition: ease-in 0.5s;
+		transform: rotate(30deg);
+	}
+	:global(.settings-icon):active {
+		transform: scale(0.95);
 	}
 	.open-menu {
 		background-color: transparent;
 		outline: none;
 		border: none;
+		z-index: 10;
+	}
+	.backdrop {
+		position: fixed;
+		inset: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		border: none;
+		cursor: default;
+		z-index: 20;
 	}
 	.bottom-spacer {
 		flex: 1;

@@ -41,14 +41,14 @@
 	}
 	.search {
 		background-color: var(--gray);
-		border: 3px solid var(--accent);
-		padding: clamp(0.5rem, 2vw, 1rem);
+		border: 2px solid rgba(255, 255, 255, 0.1);
+		padding: clamp(0.5rem, 2vw, 1rem) 1rem;
 		color: var(--primary-text);
-		border-radius: 30px;
+		border-radius: 16px;
 		font-size: clamp(0.9rem, 3vw, 1.1rem);
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		box-shadow: 0 4px 12px var(--shadow-color);
 		outline: none;
-		transition: 0.3s ease-in;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
 		width: 100%;
 		flex: 1;
 		height: clamp(3rem, 10vw, 4rem);
@@ -58,26 +58,31 @@
 		font-size: inherit;
 	}
 	.search:focus {
-		transition: 0.3s ease-in;
-		border: 3px solid var(--primary-text);
+		border-color: var(--accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
 	}
 	#search-btn {
 		width: clamp(3rem, 10vw, 4rem);
 		height: clamp(3rem, 10vw, 4rem);
 		background-color: var(--accent);
 		border: none;
-		border-radius: 30px;
+		border-radius: 16px;
 		font-size: clamp(1.2rem, 4vw, 1.5rem);
 		color: var(--primary-text);
 		flex: 0 0 clamp(3rem, 10vw, 4rem);
 		cursor: pointer;
-		border: 3px solid transparent;
-		transition: 0.2s ease-in;
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+		box-shadow: 0 4px 12px var(--shadow-color);
 	}
 	#search-btn:hover {
-		border: 3px solid var(--accent);
-		background-color: var(--gray);
-		transition: 0.2s ease-in;
+		background-color: color-mix(in srgb, var(--accent) 85%, white);
+		box-shadow: 0 6px 16px var(--shadow-color);
+	}
+	#search-btn:active {
+		transform: scale(0.96);
+	}
+	#search-btn:focus-visible {
+		outline: 2px solid var(--primary-text);
+		outline-offset: 2px;
 	}
 </style>

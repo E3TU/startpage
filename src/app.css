@@ -1,16 +1,17 @@
 :root {
 	--bg-color: #191919;
-	--gray: rgb(35, 35, 36);
-	--primary-text: #fff;
-	--secondary-text: #c2c2c2;
+	--gray: rgb(40, 40, 42);
+	--primary-text: #f5f5f5;
+	--secondary-text: #a0a0a0;
 
-	/* Accent colors */
-	--red: #c80000;
-	--orange: #d05019;
-	--purple: #7018b0;
-	--blue: #1c65d3;
-	--green: #1faa52;
+	--shadow-color: rgba(10, 10, 10, 0.45);
 
+	/* Accent colors - desaturated */
+	--red: #b83232;
+	--orange: #b85f25;
+	--purple: #6d3f9e;
+	--blue: #2a66b8;
+	--green: #2b8f55;
 }
 * {
 	margin: 0;
@@ -18,18 +19,16 @@
 	box-sizing: border-box;
 	font-family: 'Gabarito Variable', system-ui;
 }
+
+html {
+	scroll-behavior: smooth;
+}
 body {
-	/* display: flex;
-	justify-content: center; */
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	background-color: var(--bg-color);
-	/* background-image: url('../static/blob-scene-haikei.svg');
-	background-size: 100% auto;
-	background-position: bottom center;
-	background-repeat: no-repeat; */
-	height: 100vh;
+	min-height: 100dvh;
 }
 [data-accent="green"] {
 	--accent: var(--green);
