@@ -219,7 +219,9 @@
 		padding-left: 1rem;
 		margin-top: 0.5rem;
 		box-shadow: none;
-		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
 	}
 
 	.text-input:focus {
@@ -307,7 +309,9 @@
 		height: 2.25rem;
 		border-radius: 50%;
 		cursor: pointer;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
 		border: none;
 		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	}
@@ -326,7 +330,9 @@
 	}
 
 	.selected {
-		box-shadow: inset 0 0 0 2px var(--primary-text), 0 0 0 2px var(--accent);
+		box-shadow:
+			inset 0 0 0 2px var(--primary-text),
+			0 0 0 2px var(--accent);
 	}
 
 	:global(.verified) {

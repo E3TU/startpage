@@ -190,7 +190,12 @@
 		padding: 1rem;
 	}
 	.skeleton {
-		background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 75%);
+		background: linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 0.05) 25%,
+			rgba(255, 255, 255, 0.12) 50%,
+			rgba(255, 255, 255, 0.05) 75%
+		);
 		background-size: 200% 100%;
 		animation: shimmer 1.5s infinite;
 		border-radius: 8px;
@@ -228,7 +233,9 @@
 		padding: 0.5rem 1rem;
 		font-weight: 500;
 		cursor: pointer;
-		transition: transform 0.2s ease, background-color 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			background-color 0.2s ease;
 	}
 	.retry:hover {
 		background-color: color-mix(in srgb, var(--accent) 85%, white);
@@ -237,7 +244,11 @@
 		transform: scale(0.96);
 	}
 	@keyframes shimmer {
-		0% { background-position: 200% 0; }
-		100% { background-position: -200% 0; }
+		0% {
+			background-position: 200% 0;
+		}
+		100% {
+			background-position: -200% 0;
+		}
 	}
 </style>

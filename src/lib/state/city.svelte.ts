@@ -1,3 +1,3 @@
 export let city = $state({
-    selectedCity: 'Helsinki'
+	selectedCity: 'Helsinki'
 });

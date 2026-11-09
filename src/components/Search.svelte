@@ -1,22 +1,20 @@
 <script lang="ts">
-    import Icon from '@iconify/svelte';
-    import { searchEngine } from '$lib/state/search.svelte';
+	import Icon from '@iconify/svelte';
+	import { searchEngine } from '$lib/state/search.svelte';
 
-    let searchTerm = $state('');
+	let searchTerm = $state('');
 
-    let search = $derived(
-        searchEngine.url + encodeURIComponent(searchTerm)
-    );
+	let search = $derived(searchEngine.url + encodeURIComponent(searchTerm));
 
-    function handleSubmit(e: Event) {
-        e.preventDefault();
+	function handleSubmit(e: Event) {
+		e.preventDefault();
 
-        if (searchTerm) {
-            window.location.href = search;
-        }
+		if (searchTerm) {
+			window.location.href = search;
+		}
 
-        searchTerm = '';
-    }
+		searchTerm = '';
+	}
 </script>
 
 <div class="search-container">
@@ -48,7 +46,9 @@
 		font-size: clamp(0.9rem, 3vw, 1.1rem);
 		box-shadow: 0 4px 12px var(--shadow-color);
 		outline: none;
-		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
 		width: 100%;
 		flex: 1;
 		height: clamp(3rem, 10vw, 4rem);
@@ -71,7 +71,10 @@
 		color: var(--primary-text);
 		flex: 0 0 clamp(3rem, 10vw, 4rem);
 		cursor: pointer;
-		transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			background-color 0.2s ease,
+			box-shadow 0.2s ease;
 		box-shadow: 0 4px 12px var(--shadow-color);
 	}
 	#search-btn:hover {

@@ -30,19 +30,18 @@ body {
 	background-color: var(--bg-color);
 	min-height: 100dvh;
 }
-[data-accent="green"] {
+[data-accent='green'] {
 	--accent: var(--green);
 }
-[data-accent="blue"] {
+[data-accent='blue'] {
 	--accent: var(--blue);
 }
-[data-accent="red"] {
+[data-accent='red'] {
 	--accent: var(--red);
 }
-[data-accent="purple"] {
+[data-accent='purple'] {
 	--accent: var(--purple);
 }
-[data-accent="orange"] {
+[data-accent='orange'] {
 	--accent: var(--orange);
 }
-
