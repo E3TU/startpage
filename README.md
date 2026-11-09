@@ -1,12 +1,9 @@
 # Startpage
 
-A small personal homepage I keep open in a new tab. It shows the time, the weather, a search box,
+A small personal new tab homepage. It shows the time, the weather, a search box,
 and a row of pinned links. That's it.
 
 ![Startpage preview](screenshot.png)
-
-> Drop a real screenshot named `screenshot.png` in the project root if you want the preview image to
-> show up.
 
 ## What it does
 
@@ -118,11 +115,6 @@ Pages, and a few other hosts without changes. If your host is not supported, swa
   - OpenWeatherMap for weather data.
   - Google's favicon service for the link icons.
   - The search engine you choose when you submit a search.
-
-## Contributing
-
-This is a personal side project, but feel free to fork it, change it, or open a pull request if you
-fix something.
 
 ## License
 
