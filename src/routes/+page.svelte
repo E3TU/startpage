@@ -60,24 +60,37 @@
 	}
 	.widget-container {
 		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
+		flex-direction: column;
 		width: min(50rem, calc(100% - 2rem));
 		height: auto;
-		margin-top: 20rem;
+		margin-top: clamp(4rem, 15vh, 20rem);
 		gap: 2rem;
 	}
-	.smallest-item {
-		flex: 1;
-		height: 12rem;
-	}
-	.small-item {
-		flex: 2;
-		height: 12rem;
-	}
+	.smallest-item,
+	.small-item,
 	.item {
-		flex: 0 0 100%;
+		flex: 0 0 auto;
+		width: 100%;
 		height: auto;
+	}
+
+	@media (min-width: 640px) {
+		.widget-container {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+		.smallest-item {
+			flex: 1;
+			height: 12rem;
+		}
+		.small-item {
+			flex: 2;
+			height: 12rem;
+		}
+		.item {
+			flex: 0 0 100%;
+			height: auto;
+		}
 	}
 	:global(.settings-icon) {
 		color: var(--primary-text);

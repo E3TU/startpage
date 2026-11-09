@@ -1,5 +1,0 @@
-Clock Widget
-Weather Widget?
-Widget for links
-Customizable accent color
-Customizable background image or color

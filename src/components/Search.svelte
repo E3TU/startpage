@@ -42,16 +42,16 @@
 	.search {
 		background-color: var(--gray);
 		border: 3px solid var(--accent);
-		padding: 1rem;
+		padding: clamp(0.5rem, 2vw, 1rem);
 		color: var(--primary-text);
 		border-radius: 30px;
-		font-size: 1.1rem;
+		font-size: clamp(0.9rem, 3vw, 1.1rem);
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		outline: none;
 		transition: 0.3s ease-in;
 		width: 100%;
 		flex: 1;
-		height: 4rem;
+		height: clamp(3rem, 10vw, 4rem);
 	}
 	.search::placeholder {
 		color: var(--secondary-text);
@@ -62,14 +62,14 @@
 		border: 3px solid var(--primary-text);
 	}
 	#search-btn {
-		width: 4rem;
-		height: 4rem;
+		width: clamp(3rem, 10vw, 4rem);
+		height: clamp(3rem, 10vw, 4rem);
 		background-color: var(--accent);
 		border: none;
 		border-radius: 30px;
-		font-size: 1.5rem;
+		font-size: clamp(1.2rem, 4vw, 1.5rem);
 		color: var(--primary-text);
-		flex: 0 0 4rem;
+		flex: 0 0 clamp(3rem, 10vw, 4rem);
 		cursor: pointer;
 		border: 3px solid transparent;
 		transition: 0.2s ease-in;

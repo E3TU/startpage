@@ -18,9 +18,9 @@
 
 <style>
 	.links {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 1rem;
 	}
 	.item {
 		display: flex;
@@ -30,12 +30,25 @@
 		gap: 0.5rem;
 		padding-bottom: 1rem;
 		color: var(--accent);
-		height: 8rem;
-		width: 8rem;
+		height: clamp(6rem, 18vw, 8rem);
+		width: 100%;
 		background-color: var(--gray);
 		border-radius: 20px;
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		cursor: pointer;
 		text-decoration: none;
+	}
+	.item img {
+		width: clamp(40px, 10vw, 64px);
+		height: clamp(40px, 10vw, 64px);
+	}
+	.item p {
+		font-size: clamp(0.8rem, 2.5vw, 1rem);
+	}
+
+	@media (max-width: 480px) {
+		.links {
+			grid-template-columns: repeat(3, 1fr);
+		}
 	}
 </style>

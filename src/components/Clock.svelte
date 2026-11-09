@@ -38,19 +38,19 @@
 		flex-direction: column;
 		align-items: center;
 		background-color: var(--gray);
-		height: 100%;
-		width: 18rem;
+		height: 12rem;
+		width: 100%;
 		border-radius: 20px;
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 	.clock {
 		color: var(--primary-text);
 		text-shadow: 8px 8px #000;
-		font-size: 5rem;
+		font-size: clamp(3rem, 10vw, 5rem);
 	}
 	.datemonth {
 		color: var(--accent);
-		font-size: 1.5rem;
+		font-size: clamp(1rem, 4vw, 1.5rem);
 		font-weight: 600;
 	}
 </style>

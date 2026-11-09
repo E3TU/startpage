@@ -196,7 +196,7 @@
 		display: flex;
 		flex-direction: column;
 		position: absolute;
-		width: 20rem;
+		width: min(20rem, 100%);
 		height: 100vh;
 		background-color: var(--gray);
 		right: 0;
@@ -208,7 +208,7 @@
 	.text-input {
 		border: 3px solid var(--accent);
 		outline: none;
-		width: 80%;
+		width: 100%;
 		height: 2.5rem;
 		border-radius: 30px;
 		background-color: var(--bg-color);

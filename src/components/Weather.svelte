@@ -127,8 +127,8 @@
 	}
 	:global(.weather-icon) {
 		color: var(--primary-text);
-		height: 128px;
-		width: 128px;
+		height: clamp(64px, 15vw, 128px);
+		width: clamp(64px, 15vw, 128px);
 	}
 	.right {
 		flex: 1;
@@ -138,17 +138,19 @@
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
+		min-width: 0;
 	}
 	.location {
-		font-size: 1.5rem;
+		font-size: clamp(1rem, 4vw, 1.5rem);
 		padding-top: 1rem;
+		text-align: center;
 	}
 	.day {
 		padding-top: 0.25rem;
 		color: var(--accent);
 	}
 	.temperature {
-		font-size: 4rem;
+		font-size: clamp(2.5rem, 8vw, 4rem);
 	}
 	.divider {
 		border-color: var(--accent);
