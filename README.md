@@ -70,7 +70,7 @@ Open the URL it prints, usually `http://localhost:5173`.
 
 - [SvelteKit](https://kit.svelte.dev/)
 - [Svelte 5 runes](https://svelte.dev/docs/svelte/what-are-runes)
-- TypeScript
+- [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vitejs.dev/)
 - [adapter-auto](https://kit.svelte.dev/docs/adapters) for deployment
 
